@@ -156,15 +156,15 @@ export default {
               <div class="row justify-content-center">
                 <div class="col-12">
                   <div class="title-heading text-center">
-                    <!-- <h1 class="heading text-white title-dark mb-4">
+                    <h1 class="heading text-white title-dark mb-4">
                       Discover the world of <br />
                       business
-                    </h1> -->
-                    <p class="para-desc mx-auto text-white-50">
+                    </h1>
+                    <!-- <p class="para-desc mx-auto text-white-50">
                       Launch your campaign and benefit from our expertise on
                       designing and managing conversion centered bootstrap4 html
                       page.
-                    </p>
+                    </p> -->
 
                     <div class="mt-4 pt-2">
                       <a href="javascript:void(0)" class="btn btn-primary"
