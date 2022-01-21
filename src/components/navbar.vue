@@ -150,6 +150,14 @@
             </b-dropdown>
           </li>
           <li class="list-inline-item mb-0">
+            <router-link to="/auth-signup" class="btn btn-icon btn-soft-primary" data-toggle="modal"
+              data-target="#productview"><i class="mdi mdi-registration mdi-18px icons"></i></router-link>
+          </li>
+          <li class="list-inline-item mb-0">
+            <router-link to="/auth-login" class="btn btn-icon btn-soft-primary" data-toggle="modal"
+              data-target="#productview"><i class="mdi mdi-login mdi-18px icons"></i></router-link>
+          </li>
+          <li class="list-inline-item mb-0">
             <router-link to="/shop-myaccount" class="btn btn-icon btn-soft-primary" data-toggle="modal"
               data-target="#productview"><i class="mdi mdi-account-outline mdi-18px icons"></i></router-link>
           </li>
@@ -715,19 +723,19 @@
             </li>-->
 
                     <li>
-                      <router-link to="/index-saas" class="side-nav-link-ref">Каталог</router-link>
+                      <router-link to="/shop-grids" class="side-nav-link-ref">Каталог</router-link>
                     </li>
                     <li>
-                      <router-link to="/index-saas" class="side-nav-link-ref">Бренды</router-link>
+                      <router-link to="/shop-grids" class="side-nav-link-ref">Бренды</router-link>
                     </li>
                     <li>
-                      <router-link to="/index-saas" class="side-nav-link-ref">Новинки</router-link>
+                      <router-link to="/shop-grids" class="side-nav-link-ref">Новинки</router-link>
                     </li>
                     <li>
-                      <router-link to="/index-saas" class="side-nav-link-ref">Акции</router-link>
+                      <router-link to="/shop-grids" class="side-nav-link-ref">Акции</router-link>
                     </li>
                     <li>
-                      <router-link to="/index-saas" class="side-nav-link-ref">Скидки</router-link>
+                      <router-link to="/shop-grids" class="side-nav-link-ref">Скидки</router-link>
                     </li>
           
           </ul>
