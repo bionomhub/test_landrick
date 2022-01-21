@@ -7,7 +7,7 @@
       return {
         isCondensed: false,
         isWhiteNavbar: true,
-        isIcons: false,
+        isIcons: true, // кнопка вход
       };
     },
     props: {
