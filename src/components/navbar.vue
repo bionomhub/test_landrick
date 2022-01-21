@@ -6,7 +6,7 @@
     data() {
       return {
         isCondensed: false,
-        isWhiteNavbar: true,
+        // isWhiteNavbar: false,
         isIcons: true, // кнопка вход
       };
     },
@@ -28,14 +28,14 @@
       };
 
       function onwindowScroll() {
-        // if (
-        //   document.body.scrollTop >= 0 ||
-        //   document.documentElement.scrollTop >= 0
-        // ) {
-        //   document.getElementById("topnav").classList.add("nav-sticky");
-        // } else {
-        //   document.getElementById("topnav").classList.remove("nav-sticky");
-        // }
+        if (
+          document.body.scrollTop > 50 ||
+          document.documentElement.scrollTop > 50
+        ) {
+          document.getElementById("topnav").classList.add("nav-sticky");
+        } else {
+          document.getElementById("topnav").classList.remove("nav-sticky");
+        }
 
         if (
           document.body.scrollTop > 100 ||
@@ -118,7 +118,7 @@
 <template>
   <div>
     <!-- Navbar STart -->
-    <header id="topnav" class="defaultscroll sticky nav-sticky" :class="{ 'bg-white': isWhiteNavbar === true }">
+    <header id="topnav" class="defaultscroll sticky" :class="{ 'bg-white': isWhiteNavbar === true }">
       <div class="container">
         <!-- Logo container-->
         <div>
