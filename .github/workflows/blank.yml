@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 env:
-  DEPLOY_PATH: /var/www/3x3shop_ru/data/www/1
+  DEPLOY_PATH: /var/www/3x3shop_ru/data/www/3x3shop_ru
   # В теории можно собрать не только Vue-приложение, так как принцип сборки мало где отличается
   # BUILD_SCRIPT: npm run build
   BUILD_SCRIPT_OUTPUT: dist
