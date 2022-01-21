@@ -7,6 +7,7 @@
       return {
         isCondensed: false,
         isWhiteNavbar: true,
+        isIcons: false,
       };
     },
     props: {
@@ -16,9 +17,9 @@
       navLight: {
         type: Boolean,
       },
-      isIcons: {
-        type: Boolean,
-      },
+      // isIcons: {
+      //   type: Boolean,
+      // },
     },
 
     mounted: () => {
@@ -129,11 +130,12 @@
             <img src="images/logo-light.png" class="l-light" height="24" alt="" />
           </router-link>
         </div>
-        <div class="buy-button" v-if="isIcons !== true">
-          <a href="https://1.envato.market/4n73n" target="_blank" class="btn" :class="{
+        <div class="buy-button" v-if="isIcons !== true" @click="isIcons = !isIcons">
+          <!-- <a href="#" target="_blank" class="btn" :class="{
               'btn-light': navLight === true,
               'btn-primary': navLight !== true,
-            }">Buy Now</a>
+            }">Buy Now</a> -->
+            <button class="btn-primary btn">Вход</button>
         </div>
         <ul class="buy-button list-inline mb-0" v-if="isIcons === true">
           <li class="list-inline-item mb-0 developer-icon">
@@ -151,14 +153,16 @@
             </b-dropdown>
           </li>
           <li class="list-inline-item mb-0">
-        <router-link
-              to="/shop-myaccount"
-              class="btn btn-icon btn-soft-primary"
-              data-toggle="modal"
-              data-target="#productview"
-              ><i class="mdi mdi-account-outline mdi-18px icons"></i
-            ></router-link
-                      >
+            <router-link to="/auth-signup" class="btn btn-icon btn-soft-primary" data-toggle="modal"
+              data-target="#productview"><i class="mdi mdi-registration mdi-18px icons"></i></router-link>
+          </li>
+          <li class="list-inline-item mb-0">
+            <router-link to="/auth-login" class="btn btn-icon btn-soft-primary" data-toggle="modal"
+              data-target="#productview"><i class="mdi mdi-login mdi-18px icons"></i></router-link>
+          </li>
+          <li class="list-inline-item mb-0">
+            <router-link to="/shop-myaccount" class="btn btn-icon btn-soft-primary" data-toggle="modal"
+              data-target="#productview"><i class="mdi mdi-account-outline mdi-18px icons"></i></router-link>
           </li>
         </ul>
         <!--end login button-->
@@ -181,7 +185,7 @@
         <div id="navigation">
           <!-- Navigation Menu-->
           <ul class="navigation-menu" :class="{ 'nav-light': navLight === true }">
-            <li>
+          <!--  <li>
               <router-link to="/" class="side-nav-link-ref">Home</router-link>
             </li>
             <li class="has-submenu">
@@ -381,10 +385,10 @@
               </ul>
             </li>
 
-            <li class="has-submenu">
+             <li class="has-submenu">
               <a href="javascript:void(0)" @click="onMenuClick">Pages</a><span class="menu-arrow"></span>
               <ul class="submenu">
-                <li class="has-submenu">
+                <li class="has-submenu"> 
                   <a href="javascript:void(0)" @click="onMenuClick"> Company </a><span class="submenu-arrow"></span>
                   <ul class="submenu">
                     <li>
@@ -721,7 +725,24 @@
                   <router-link to="/widget" class="side-nav-link-ref">Widget</router-link>
                 </li>
               </ul>
-            </li>
+            </li> -->
+
+                    <li>
+                      <router-link to="/shop-grids" class="side-nav-link-ref">Каталог</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/shop-grids" class="side-nav-link-ref">Бренды</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/shop-grids" class="side-nav-link-ref">Новинки</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/shop-grids" class="side-nav-link-ref">Акции</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/shop-grids" class="side-nav-link-ref">Скидки</router-link>
+                    </li>
+          
           </ul>
           <!--end navigation menu-->
           <div class="buy-menu-btn d-none">
