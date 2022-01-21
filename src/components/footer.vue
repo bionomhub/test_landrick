@@ -83,24 +83,26 @@
             <h5 class="text-light footer-head">Покупателям / FAQ</h5>
             <ul class="list-unstyled footer-list mt-4">
               <li>
-                <router-link to="/page-terms" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i> Terms of
-                  Services</router-link>
+                <router-link to="/helpcenter-faqs" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i> Как оформить заказ</router-link>
               </li>
               <li>
-                <router-link to="/page-privacy" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i> Privacy
-                  Policy</router-link>
+                <router-link to="/helpcenter-faqs" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i> Доставка товара</router-link>
               </li>
               <li>
-                <router-link to="/documentation" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
-                  Documentation</router-link>
+                <router-link to="/helpcenter-faqs" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
+                  Оплата товара</router-link>
               </li>
               <li>
-                <router-link to="/changelog" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
-                  Changelog</router-link>
+                <router-link to="/helpcenter-faqs" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
+                  Получение товара</router-link>
               </li>
               <li>
-                <router-link to="/components" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
-                  Components</router-link>
+                <router-link to="/helpcenter-faqs" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
+                  Возврат товара</router-link>
+              </li>
+              <li>
+                <router-link to="/helpcenter-guides" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
+                  Помощь покупателям</router-link>
               </li>
             </ul>
           </div>
