@@ -1,23 +1,23 @@
 <script>
-import {
-  FacebookIcon,
-  InstagramIcon,
-  TwitterIcon,
-  LinkedinIcon,
-  MailIcon,
-} from "vue-feather-icons";
-export default {
-  data() {
-    return {};
-  },
-  components: {
+  import {
     FacebookIcon,
     InstagramIcon,
     TwitterIcon,
     LinkedinIcon,
     MailIcon,
-  },
-};
+  } from "vue-feather-icons";
+  export default {
+    data() {
+      return {};
+    },
+    components: {
+      FacebookIcon,
+      InstagramIcon,
+      TwitterIcon,
+      LinkedinIcon,
+      MailIcon,
+    },
+  };
 </script>
 
 <template>
@@ -42,9 +42,7 @@ export default {
               </li>
               <li class="list-inline-item ml-1">
                 <a href="javascript:void(0)" class="rounded">
-                  <instagram-icon
-                    class="fea icon-sm fea-social"
-                  ></instagram-icon>
+                  <instagram-icon class="fea icon-sm fea-social"></instagram-icon>
                 </a>
               </li>
               <li class="list-inline-item ml-1">
@@ -63,89 +61,46 @@ export default {
           <!--end col-->
 
           <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-            <h5 class="text-light footer-head">Company</h5>
+            <h5 class="text-light footer-head">Компания</h5>
             <ul class="list-unstyled footer-list mt-4">
               <li>
-                <router-link to="/page-aboutus" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i> About
-                  us</router-link
-                >
+                <router-link to="/page-aboutus-two" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>О компании
+                </router-link>
               </li>
               <li>
-                <router-link to="/page-services" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i>
-                  Services</router-link
-                >
+                <router-link to="/page-services" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
+                  Партнеры</router-link>
               </li>
               <li>
-                <router-link to="/page-team" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i> Team</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/page-pricing" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i>
-                  Pricing</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/page-portfolio-modern" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i>
-                  Project</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/page-jobs" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i>
-                  Careers</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/page-blog-grid" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i> Blog</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/auth-cover-login" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i> Login</router-link
-                >
+                <router-link to="/page-blog-grid" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i> Блог
+                </router-link>
               </li>
             </ul>
           </div>
           <!--end col-->
 
           <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-            <h5 class="text-light footer-head">Usefull Links</h5>
+            <h5 class="text-light footer-head">Покупателям / FAQ</h5>
             <ul class="list-unstyled footer-list mt-4">
               <li>
-                <router-link to="/page-terms" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i> Terms of
-                  Services</router-link
-                >
+                <router-link to="/page-terms" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i> Terms of
+                  Services</router-link>
               </li>
               <li>
-                <router-link to="/page-privacy" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i> Privacy
-                  Policy</router-link
-                >
+                <router-link to="/page-privacy" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i> Privacy
+                  Policy</router-link>
               </li>
               <li>
-                <router-link to="/documentation" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i>
-                  Documentation</router-link
-                >
+                <router-link to="/documentation" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
+                  Documentation</router-link>
               </li>
               <li>
-                <router-link to="/changelog" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i>
-                  Changelog</router-link
-                >
+                <router-link to="/changelog" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
+                  Changelog</router-link>
               </li>
               <li>
-                <router-link to="/components" class="text-foot"
-                  ><i class="mdi mdi-chevron-right mr-1"></i>
-                  Components</router-link
-                >
+                <router-link to="/components" class="text-foot"><i class="mdi mdi-chevron-right mr-1"></i>
+                  Components</router-link>
               </li>
             </ul>
           </div>
@@ -158,31 +113,18 @@ export default {
               <div class="row">
                 <div class="col-lg-12">
                   <div class="foot-subscribe form-group">
-                    <label
-                      >Write your email
-                      <span class="text-danger">*</span></label
-                    >
+                    <label>Write your email
+                      <span class="text-danger">*</span></label>
                     <div class="position-relative">
                       <mail-icon class="fea icon-sm icons"></mail-icon>
-                      <input
-                        type="email"
-                        name="email"
-                        id="emailsubscribe"
-                        class="form-control pl-5 rounded"
-                        placeholder="Your email : "
-                        required
-                      />
+                      <input type="email" name="email" id="emailsubscribe" class="form-control pl-5 rounded"
+                        placeholder="Your email : " required />
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-12">
-                  <input
-                    type="submit"
-                    id="submitsubscribe"
-                    name="send"
-                    class="btn btn-soft-primary btn-block"
-                    value="Subscribe"
-                  />
+                  <input type="submit" id="submitsubscribe" name="send" class="btn btn-soft-primary btn-block"
+                    value="Subscribe" />
                 </div>
               </div>
             </form>
@@ -202,12 +144,7 @@ export default {
               <p class="mb-0">
                 © 2020 - {{ new Date().getFullYear() }} Landrick. Design with
                 <i class="mdi mdi-heart text-danger"></i> by
-                <a
-                  href="http://www.themesbrand.com/"
-                  target="_blank"
-                  class="text-reset"
-                  >Themesbrand</a
-                >.
+                <a href="http://www.themesbrand.com/" target="_blank" class="text-reset">Themesbrand</a>.
               </p>
             </div>
           </div>
@@ -216,49 +153,24 @@ export default {
           <div class="col-sm-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
             <ul class="list-unstyled text-sm-right mb-0">
               <li class="list-inline-item">
-                <a href="javascript:void(0)"
-                  ><img
-                    src="images/payments/american-ex.png"
-                    class="avatar avatar-ex-sm"
-                    title="American Express"
-                    alt=""
-                /></a>
+                <a href="javascript:void(0)"><img src="images/payments/american-ex.png" class="avatar avatar-ex-sm"
+                    title="American Express" alt="" /></a>
               </li>
               <li class="list-inline-item ml-1">
-                <a href="javascript:void(0)"
-                  ><img
-                    src="images/payments/discover.png"
-                    class="avatar avatar-ex-sm"
-                    title="Discover"
-                    alt=""
-                /></a>
+                <a href="javascript:void(0)"><img src="images/payments/discover.png" class="avatar avatar-ex-sm"
+                    title="Discover" alt="" /></a>
               </li>
               <li class="list-inline-item ml-1">
-                <a href="javascript:void(0)"
-                  ><img
-                    src="images/payments/master-card.png"
-                    class="avatar avatar-ex-sm"
-                    title="Master Card"
-                    alt=""
-                /></a>
+                <a href="javascript:void(0)"><img src="images/payments/master-card.png" class="avatar avatar-ex-sm"
+                    title="Master Card" alt="" /></a>
               </li>
               <li class="list-inline-item ml-1">
-                <a href="javascript:void(0)"
-                  ><img
-                    src="images/payments/paypal.png"
-                    class="avatar avatar-ex-sm"
-                    title="Paypal"
-                    alt=""
-                /></a>
+                <a href="javascript:void(0)"><img src="images/payments/paypal.png" class="avatar avatar-ex-sm"
+                    title="Paypal" alt="" /></a>
               </li>
               <li class="list-inline-item ml-1">
-                <a href="javascript:void(0)"
-                  ><img
-                    src="images/payments/visa.png"
-                    class="avatar avatar-ex-sm"
-                    title="Visa"
-                    alt=""
-                /></a>
+                <a href="javascript:void(0)"><img src="images/payments/visa.png" class="avatar avatar-ex-sm"
+                    title="Visa" alt="" /></a>
               </li>
             </ul>
           </div>

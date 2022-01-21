@@ -151,7 +151,7 @@
           </li>
           <li class="list-inline-item mb-0">
             <router-link to="/auth-signup" class="btn btn-icon btn-soft-primary" data-toggle="modal"
-              data-target="#productview"><i class="mdi mdi-registration mdi-18px icons"></i></router-link>
+              data-target="#productview"><i class="mdi mdi-account-plus-outline mdi-18px icons"></i></router-link>
           </li>
           <li class="list-inline-item mb-0">
             <router-link to="/auth-login" class="btn btn-icon btn-soft-primary" data-toggle="modal"
