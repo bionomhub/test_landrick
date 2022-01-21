@@ -149,32 +149,9 @@
               </div>
             </b-dropdown>
           </li>
-          <!-- <li class="list-inline-item mb-0 pr-2">
-            <a href="#" class="btn btn-icon btn-soft-primary"
-              ><i class="mdi mdi-github mdi-18px icons"></i
-            ></a>
-          </li>
-          <li class="list-inline-item mb-0 pr-2">
-            <a href="#" class="btn btn-icon btn-soft-primary"
-              ><i class="mdi mdi-stack-overflow mdi-18px icons"></i
-            ></a>
-          </li> -->
           <li class="list-inline-item mb-0">
-            <!-- <a
-              href="javascript:void(0)"
-              class="btn btn-icon btn-soft-primary"
-              data-toggle="modal"
-              data-target="#productview"
-              ><i class="mdi mdi-account-outline mdi-18px icons"></i
-            ></a> -->
-            <router-link
-                        to="/shop-myaccount"
-                        class="btn btn-icon btn-soft-primary"
-                        data-toggle="modal"
-                        data-target="#productview"
-                        ><i class="mdi mdi-account-outline mdi-18px icons"></i
-            ></router-link
-                      >
+            <router-link to="/shop-myaccount" class="btn btn-icon btn-soft-primary" data-toggle="modal"
+              data-target="#productview"><i class="mdi mdi-account-outline mdi-18px icons"></i></router-link>
           </li>
         </ul>
         <!--end login button-->
@@ -197,10 +174,8 @@
         <div id="navigation">
           <!-- Navigation Menu-->
           <ul class="navigation-menu" :class="{ 'nav-light': navLight === true }">
-            <li>
-              <router-link to="/" class="side-nav-link-ref">Home</router-link>
-            </li>
-            <li class="has-submenu">
+
+            <!--<li class="has-submenu">
               <a href="javascript:void(0)" @click="onMenuClick">Landing</a><span class="menu-arrow"></span>
               <ul class="submenu megamenu">
                 <li>
@@ -737,7 +712,24 @@
                   <router-link to="/widget" class="side-nav-link-ref">Widget</router-link>
                 </li>
               </ul>
-            </li>
+            </li>-->
+
+                    <li>
+                      <router-link to="/index-saas" class="side-nav-link-ref">Каталог</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/index-saas" class="side-nav-link-ref">Бренды</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/index-saas" class="side-nav-link-ref">Новинки</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/index-saas" class="side-nav-link-ref">Акции</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/index-saas" class="side-nav-link-ref">Скидки</router-link>
+                    </li>
+          
           </ul>
           <!--end navigation menu-->
           <div class="buy-menu-btn d-none">
