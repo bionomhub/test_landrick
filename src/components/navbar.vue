@@ -173,7 +173,7 @@ export default {
               </div>
             </b-dropdown>
           </li>
-          <li class="list-inline-item mb-0 pr-2">
+          <!-- <li class="list-inline-item mb-0 pr-2">
             <a href="#" class="btn btn-icon btn-soft-primary"
               ><i class="mdi mdi-github mdi-18px icons"></i
             ></a>
@@ -182,15 +182,23 @@ export default {
             <a href="#" class="btn btn-icon btn-soft-primary"
               ><i class="mdi mdi-stack-overflow mdi-18px icons"></i
             ></a>
-          </li>
+          </li> -->
           <li class="list-inline-item mb-0">
-            <a
+            <!-- <a
               href="javascript:void(0)"
               class="btn btn-icon btn-soft-primary"
               data-toggle="modal"
               data-target="#productview"
               ><i class="mdi mdi-account-outline mdi-18px icons"></i
-            ></a>
+            ></a> -->
+            <router-link
+                        to="/shop-myaccount"
+                        class="btn btn-icon btn-soft-primary"
+                        data-toggle="modal"
+                        data-target="#productview"
+                        ><i class="mdi mdi-account-outline mdi-18px icons"></i
+            ></router-link
+                      >
           </li>
         </ul>
         <!--end login button-->
