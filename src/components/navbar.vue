@@ -6,6 +6,8 @@
     data() {
       return {
         isCondensed: false,
+        isWhiteNavbar: true,
+        isIcons: false,
       };
     },
     props: {
@@ -15,9 +17,9 @@
       navLight: {
         type: Boolean,
       },
-      isIcons: {
-        type: Boolean,
-      },
+      // isIcons: {
+      //   type: Boolean,
+      // },
     },
 
     mounted: () => {
@@ -26,14 +28,14 @@
       };
 
       function onwindowScroll() {
-        if (
-          document.body.scrollTop > 50 ||
-          document.documentElement.scrollTop > 50
-        ) {
-          document.getElementById("topnav").classList.add("nav-sticky");
-        } else {
-          document.getElementById("topnav").classList.remove("nav-sticky");
-        }
+        // if (
+        //   document.body.scrollTop >= 0 ||
+        //   document.documentElement.scrollTop >= 0
+        // ) {
+        //   document.getElementById("topnav").classList.add("nav-sticky");
+        // } else {
+        //   document.getElementById("topnav").classList.remove("nav-sticky");
+        // }
 
         if (
           document.body.scrollTop > 100 ||
@@ -116,7 +118,7 @@
 <template>
   <div>
     <!-- Navbar STart -->
-    <header id="topnav" class="defaultscroll sticky" :class="{ 'bg-white': isWhiteNavbar === true }">
+    <header id="topnav" class="defaultscroll sticky nav-sticky" :class="{ 'bg-white': isWhiteNavbar === true }">
       <div class="container">
         <!-- Logo container-->
         <div>
@@ -128,11 +130,12 @@
             <img src="images/logo-light.png" class="l-light" height="24" alt="" />
           </router-link>
         </div>
-        <div class="buy-button" v-if="isIcons !== true">
-          <a href="https://1.envato.market/4n73n" target="_blank" class="btn" :class="{
+        <div class="buy-button" v-if="isIcons !== true" @click="isIcons = !isIcons">
+          <!-- <a href="#" target="_blank" class="btn" :class="{
               'btn-light': navLight === true,
               'btn-primary': navLight !== true,
-            }">Buy Now</a>
+            }">Buy Now</a> -->
+            <button class="btn-primary btn">Вход</button>
         </div>
         <ul class="buy-button list-inline mb-0" v-if="isIcons === true">
           <li class="list-inline-item mb-0 developer-icon">
@@ -182,8 +185,10 @@
         <div id="navigation">
           <!-- Navigation Menu-->
           <ul class="navigation-menu" :class="{ 'nav-light': navLight === true }">
-
-            <!--<li class="has-submenu">
+          <!--  <li>
+              <router-link to="/" class="side-nav-link-ref">Home</router-link>
+            </li>
+            <li class="has-submenu">
               <a href="javascript:void(0)" @click="onMenuClick">Landing</a><span class="menu-arrow"></span>
               <ul class="submenu megamenu">
                 <li>
@@ -380,10 +385,10 @@
               </ul>
             </li>
 
-            <li class="has-submenu">
+             <li class="has-submenu">
               <a href="javascript:void(0)" @click="onMenuClick">Pages</a><span class="menu-arrow"></span>
               <ul class="submenu">
-                <li class="has-submenu">
+                <li class="has-submenu"> 
                   <a href="javascript:void(0)" @click="onMenuClick"> Company </a><span class="submenu-arrow"></span>
                   <ul class="submenu">
                     <li>
@@ -720,7 +725,7 @@
                   <router-link to="/widget" class="side-nav-link-ref">Widget</router-link>
                 </li>
               </ul>
-            </li>-->
+            </li> -->
 
                     <li>
                       <router-link to="/shop-grids" class="side-nav-link-ref">Каталог</router-link>
