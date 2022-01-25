@@ -10,6 +10,8 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
+    "firebase": "^9.6.4",
+    "firebaseui": "^6.0.0",
     "swiper": "^6.2.0",
     "vue": "^2.6.12",
     "vue-awesome-swiper": "^4.1.1",
