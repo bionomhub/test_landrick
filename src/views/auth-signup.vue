@@ -1,5 +1,6 @@
 <script>
 import Switcher from "@/components/switcher";
+
 import {
     FacebookIcon,
     InstagramIcon,
@@ -10,7 +11,9 @@ import {
     UserCheckIcon,
     MailIcon,
     KeyIcon
+    
 } from 'vue-feather-icons';
+import Register from "../components/register";
 /**
  * Auth-signup component
  */
@@ -28,7 +31,8 @@ export default {
         UserIcon,
         UserCheckIcon,
         MailIcon,
-        KeyIcon
+        KeyIcon,
+        Register
     }
 }
 </script>
@@ -55,7 +59,7 @@ export default {
                     <div class="card shadow rounded border-0">
                         <div class="card-body">
                             <h4 class="card-title text-center">Signup</h4>
-                            <form class="login-form mt-4">
+                            <!-- <form class="login-form mt-4">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group ">
@@ -109,20 +113,21 @@ export default {
                                             <div class="row">
                                                 <div class="col-6 mt-3">
                                                     <a href="javascript:void(0)" class="btn btn-block btn-light"><i class="mdi mdi-facebook text-primary"></i> Facebook</a>
-                                                </div><!--end col-->
+                                                </div>
                                                 
                                                 <div class="col-6 mt-3">
                                                     <a href="javascript:void(0)" class="btn btn-block btn-light"><i class="mdi mdi-google text-danger"></i> Google</a>
-                                                </div><!--end col-->
+                                                </div>
                                             </div>
-                                        </div><!--end col-->
+                                        </div>
                                     <div class="mx-auto">
                                         <p class="mb-0 mt-3"><small class="text-dark mr-2">Already have an account ?</small>
                                             <router-link to="/auth-login" class="text-dark font-weight-bold">Sign in</router-link>
                                         </p>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
+                            <Register />
                         </div>
                     </div>
                 </div>
