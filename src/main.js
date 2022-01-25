@@ -40,6 +40,25 @@ Vue.use(VueYoutube)
 Vue.use(vueVimeoPlayer)
 Vue.use(VueMasonry)
 
+const firebaseConfig = {
+  apiKey: "AIzaSyAVKSGzc1CtJol5rA5liF4W8tBhiYLTXsk",
+  authDomain: "e-cosmo-8f042.firebaseapp.com",
+  projectId: "e-cosmo-8f042",
+  storageBucket: "e-cosmo-8f042.appspot.com",
+  messagingSenderId: "729191518103",
+  appId: "1:729191518103:web:1be0c860169c233802fed2"
+};
+
+firebase.initializeApp(firebaseConfig);
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+ui.start('#firebaseui-auth-container', {
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ],
+  // Other config options...
+});
+
 new Vue({
   router,
   render: h => h(App)
