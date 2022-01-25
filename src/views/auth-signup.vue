@@ -58,7 +58,7 @@ export default {
                 <div class="col-lg-5 col-md-6">
                     <div class="card shadow rounded border-0">
                         <div class="card-body">
-                            <h4 class="card-title text-center">Signup</h4>
+                            <!-- <h4 class="card-title text-center">Signup</h4> -->
                             <!-- <form class="login-form mt-4">
                                 <div class="row">
                                     <div class="col-md-6">
