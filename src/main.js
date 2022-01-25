@@ -5,6 +5,17 @@ import firebase from 'firebase/compat/app';
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 
+const firebaseConfig = {
+  apiKey: 'AIzaSyAVKSGzc1CtJol5rA5liF4W8tBhiYLTXsk',
+  authDomain: 'e-cosmo-8f042.firebaseapp.com',
+  projectId: 'e-cosmo-8f042',
+  storageBucket: 'e-cosmo-8f042.appspot.com',
+  messagingSenderId: '729191518103',
+  appId: '1:729191518103:web:1be0c860169c233802fed2'
+};
+
+firebase.initializeApp(firebaseConfig);
+
 Vue.config.productionTip = false
 
 import "../public/css/materialdesignicons.min.css";

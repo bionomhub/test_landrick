@@ -2,6 +2,8 @@
 import Switcher from "@/components/switcher";
 import { HomeIcon, UserIcon, KeyIcon } from "vue-feather-icons";
 
+import Login from "../components/login";
+
 /**
  * Auth-login component
  */
@@ -14,6 +16,7 @@ export default {
     HomeIcon,
     UserIcon,
     KeyIcon,
+    Login,
   },
 };
 </script>
@@ -43,7 +46,7 @@ export default {
             <div class="card login-page bg-white shadow rounded border-0">
               <div class="card-body">
                 <h4 class="card-title text-center">Login</h4>
-                <form class="login-form mt-4">
+                <!-- <form class="login-form mt-4">
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="form-group">
@@ -119,7 +122,7 @@ export default {
                             Facebook</a
                           >
                         </div>
-                        <!--end col-->
+                        
 
                         <div class="col-6 mt-3">
                           <a
@@ -129,10 +132,10 @@ export default {
                             Google</a
                           >
                         </div>
-                        <!--end col-->
+                        
                       </div>
                     </div>
-                    <!--end col-->
+                    
                     <div class="col-12 text-center">
                       <p class="mb-0 mt-3">
                         <small class="text-dark mr-2"
@@ -146,7 +149,9 @@ export default {
                       </p>
                     </div>
                   </div>
-                </form>
+                </form> -->
+
+                <Login />
               </div>
             </div>
             <!---->
@@ -160,5 +165,6 @@ export default {
     <!--end section-->
     <!-- Hero End -->
     <Switcher />
+    
   </div>
 </template>
