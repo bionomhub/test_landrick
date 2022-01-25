@@ -40,6 +40,7 @@ export default {
             </div>
           </div>
           <div class="col-lg-5 col-md-6">
+          <section id="firebaseui-auth-container"></section>
             <div class="card login-page bg-white shadow rounded border-0">
               <div class="card-body">
                 <h4 class="card-title text-center">Login</h4>
