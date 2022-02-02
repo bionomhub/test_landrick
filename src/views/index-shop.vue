@@ -276,7 +276,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -285,7 +285,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link
@@ -359,7 +359,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -368,7 +368,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
@@ -450,7 +450,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -459,7 +459,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link
@@ -532,7 +532,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -541,7 +541,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
@@ -622,7 +622,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -631,7 +631,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
@@ -695,7 +695,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -704,7 +704,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
@@ -776,7 +776,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -785,7 +785,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
@@ -866,7 +866,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -875,7 +875,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
@@ -1114,7 +1114,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -1123,7 +1123,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
@@ -1204,7 +1204,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -1213,7 +1213,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
@@ -1294,7 +1294,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -1303,7 +1303,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link
@@ -1384,7 +1384,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -1393,7 +1393,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link
@@ -1526,7 +1526,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -1535,7 +1535,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link
@@ -1610,7 +1610,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -1619,7 +1619,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
@@ -1700,7 +1700,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -1709,7 +1709,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
@@ -1804,7 +1804,7 @@ export default {
                       href="javascript:void(0)"
                       class="btn btn-icon btn-pills btn-soft-danger"
                       ><heart-icon class="icons"></heart-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <a
@@ -1813,7 +1813,7 @@ export default {
                       data-target="#productview"
                       class="btn btn-icon btn-pills btn-soft-primary"
                       ><eye-icon class="icons"></eye-icon>
-                    ></a>
+                    </a>
                   </li>
                   <li class="mt-2">
                     <router-link tag="a"
