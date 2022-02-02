@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import firebase from 'firebase/compat/app';
-import * as firebaseui from 'firebaseui'
-import 'firebaseui/dist/firebaseui.css'
+
+
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/database'
+import store from './store/store.js'
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAVKSGzc1CtJol5rA5liF4W8tBhiYLTXsk',
@@ -15,6 +19,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 
 Vue.config.productionTip = false
 
@@ -34,13 +39,35 @@ Vue.use(VueScrollTo, {
   easing: "ease"
 })
 
+
 Vue.use(BootstrapVue)
 Vue.use(Scrollspy);
 Vue.use(VueYoutube)
 Vue.use(vueVimeoPlayer)
 Vue.use(VueMasonry)
 
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+
+// Vue.use(Vuex)
+
+
+
+// let app = '1';
+
+// firebase.auth().onAuthStateChanged(() => {
+  // if(!app){
+    app = new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+//   }
+// })
+
+// const app = new Vue({
+//   el: '#app',
+//   // указываем хранилище в опции «store», что обеспечит
+//   // доступ к нему также и во всех дочерних компонентах
+//   router,
+//   store,
+//   render: h => h(App),
+// });

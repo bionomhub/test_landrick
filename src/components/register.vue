@@ -3,26 +3,26 @@
         <h4 class="card-title text-center">Регистрация</h4>
         <form class="login-form mt-4" @submit.prevent="register">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group ">
                         <label>Имя <span class="text-danger">*</span></label>
                         <div class="position-relative">
                             <user-icon class="fea icon-sm icons"></user-icon>
-                            <input type="text" class="form-control pl-5" placeholder="Имя" name="s" required=""
+                            <input type="text" class="form-control pl-5" placeholder="Имя" name="first_name" required=""
                                 v-model="first_name">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     <div class="form-group ">
                         <label>Фамилия <span class="text-danger">*</span></label>
                         <div class="position-relative">
                             <user-check-icon class="fea icon-sm icons"></user-check-icon>
-                            <input type="text" class="form-control pl-5" placeholder="Фамилия" name="s" required=""
+                            <input type="text" class="form-control pl-5" placeholder="Фамилия" name="last_name" required=""
                                 v-model="last_name">
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-12">
                     <div class="form-group ">
                         <label>Email <span class="text-danger">*</span></label>
@@ -77,74 +77,39 @@
             </div>
         </form>
 
-        <!-- <div class="card horizontal" style="max-width:400px;margin:0 auto;" v-if="user">
-            <div class="card-image" style="margin-top:25px;margin-left:10px;"> <img :src="user.photoURL"
-                    style="width:75px;height:75px;border-radius:50%;border:4px solid #333" /> </div>
-            <div class="card-stacked">
-                <div class="card-content">
-                    <p> name: <strong>{{user.displayName}}</strong><br />email:<strong>{{user.email}}</strong><br />uid:
-                        <strong>{{user.uid}}</strong> <br />provider: <strong
-                            class="teal-text">{{user.providerData[0].providerId}}</strong> </p>
-                </div>
-            </div>
-        </div> -->
-
-
     </div>
 </template>
 
 <script>
     import firebase from 'firebase/compat/app'
-    // import { getAuth } from 'firebase/auth'
-
+    import {mapActions} from 'vuex'
 
     export default {
         name: 'Register',
         data() {
             return {
                 first_name: '',
-                last_name: '',
+                // last_name: '',
                 email: '',
-                password: '',
-                // Uid: '',
-                // user: null,
+                password: ''
             };
         },
         methods: {
-            register() {
-                const uid = getUid
-                firebase
-                    .auth()
-                    .createUserWithEmailAndPassword(this.email, this.password)
-                    .then(() => {
-                        alert('Successfully registered! Please login.');
-                        this.$router.push('/');
-                    })
-                    .catch(error => {
-                        alert(error.message);
-                    });
-                firebase
-                    .database().ref(`/users/${uid}/info`).set({
-                        first_name: this.first_name,
-                        last_name: this.last_name
-                    });
-            },
-            getUid(){
-                const user = firebase.auth().currentUser
-                return user ? user.Uid : null
+
+            ...mapActions(['registerFirebase']),
+            register(){
+                // try{
+                this.registerFirebase({
+                    email: this.email,
+                    password: this.password,
+                    name: this.first_name
+                })
+                // this.$router.push('/shop-myaccount');
+
+                // } catch (e){console.log('ОШИБКАААА')}
+                
             }
-
-
         },
-        
-        // created() {
-        //     firebase.auth().onAuthStateChanged(user => {
-        //         if (user) {
-        //             this.user = user;
-        //         }
-        //     });
-        // }
-    
     }
 </script>
 
