@@ -74,7 +74,7 @@
             </div>
         </form>
 
-    <button @click="logout">logout</button>
+    <!-- <button @click="logout">logout</button> -->
     </div>
 </template>
 
