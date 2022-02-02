@@ -7,6 +7,7 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/database'
 import store from './store/store.js'
+import messagePlugin from './utils/message.plugin'
 
 
 const firebaseConfig = {
@@ -46,22 +47,24 @@ Vue.use(VueYoutube)
 Vue.use(vueVimeoPlayer)
 Vue.use(VueMasonry)
 
+Vue.use(messagePlugin)
+
 
 // Vue.use(Vuex)
 
 
 
-// let app = '1';
+let app 
 
-// firebase.auth().onAuthStateChanged(() => {
-  // if(!app){
+firebase.auth().onAuthStateChanged(() => {
+  if(!app){
     app = new Vue({
       router,
       store,
       render: h => h(App)
     }).$mount('#app')
-//   }
-// })
+  }
+})
 
 // const app = new Vue({
 //   el: '#app',

@@ -9,7 +9,7 @@
                         <div class="position-relative">
                             <user-icon class="fea icon-sm icons"></user-icon>
                             <input type="text" class="form-control pl-5" placeholder="Имя" name="first_name" required=""
-                                v-model="first_name">
+                                v-model.trim="first_name">
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <div class="position-relative">
                             <mail-icon class="fea icon-sm icons"></mail-icon>
                             <input type="email" class="form-control pl-5" placeholder="Email" name="email" required=""
-                                v-model="email">
+                                v-model.trim="email">
                         </div>
                     </div>
                 </div>
@@ -39,14 +39,14 @@
                         <div class="position-relative">
                             <key-icon class="fea icon-sm icons"></key-icon>
                             <input type="password" class="form-control pl-5" placeholder="Пароль" required=""
-                                v-model="password">
+                                v-model.trim="password">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="agree" required=""> 
                             <label class="custom-control-label" for="customCheck1">Я принимаю <a href="#"
                                     class="text-primary">условия конфиденциальности</a></label>
                         </div>
@@ -83,6 +83,7 @@
 <script>
     import firebase from 'firebase/compat/app'
     import {mapActions} from 'vuex'
+    import messages from '@/utils/messages'
 
     export default {
         name: 'Register',
@@ -91,28 +92,58 @@
                 first_name: '',
                 // last_name: '',
                 email: '',
-                password: ''
+                password: '',
+                agree: false
             };
         },
+        
         methods: {
-
             ...mapActions(['registerFirebase']),
-            register(){
-                // try{
-                this.registerFirebase({
+            async register(){
+                try{
+                await this.registerFirebase({
                     email: this.email,
                     password: this.password,
                     name: this.first_name
                 })
-                // this.$router.push('/shop-myaccount');
+                this.$router.push('/auth-login');
 
-                // } catch (e){console.log('ОШИБКАААА')}
-                
+                } catch (e){console.log('ОШИБКАААА')}      
             }
         },
+        computed: {
+            error(){
+                return this.$store.getters.error
+            }
+        },
+         watch: {
+            error(fbError) {
+                console.log(fbError)
+                this.$error(messages[fbError.code] || 'Что-то пошло не так')
+                // console.log('ошибка')
+            }
+        },
+        mounted() {
+            // this.$message('Test')
+            if (messages[this.$route.query.message]){
+                this.$message(messages[this.$route.query.message])
+            }
+        }
     }
 </script>
 
 <style>
-
+#toast-container{
+    position: absolute;
+    top:50px;
+    right: 100px;
+    z-index: 9999999;
+    opacity: 1;
+}
+.toast{
+    padding: 10px;
+    background-color: bisque;
+    color: black;
+    border-radius: 10px;
+}
 </style>

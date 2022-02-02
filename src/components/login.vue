@@ -1,5 +1,9 @@
 <template>
     <div>
+        <!-- <p v-if="$store.state.isAuth === true">Авторизован</p>
+        <p v-else>Не авторизован</p> -->
+        <p>{{name}}</p>
+
         <h4 class="card-title text-center">Вход</h4>
         <form class="login-form mt-4" @submit.prevent="login">
             <div class="row">
@@ -70,12 +74,15 @@
             </div>
         </form>
 
+    <button @click="logout">logout</button>
     </div>
 </template>
 
 <script>
     import firebase from 'firebase/compat/app';
-    import {mapActions} from 'vuex'
+    import {mapActions, mapGetters} from 'vuex'
+    import messages from '@/utils/messages'
+    
     export default {
         name: 'Register',
         data() {
@@ -86,24 +93,69 @@
             };
         },
         methods: {
-            ...mapActions(['loginFirebase']),
-            login(){
+            ...mapActions(['loginFirebase', 'logoutFirebase']),
+           async login(){
                 try{
-                this.loginFirebase({
+                 await this.loginFirebase({
                     email: this.email,
                     password: this.password
                 })
-                // this.$router.push('/shop-myaccount');
-
-                } catch (e){console.log('ОШИБКАААА')}
-                
+                this.$router.push('/shop-myaccount');
+                } catch (e){
+                    console.log('ОШИБКАААА')
+                }   
+            },
+            async logout(){
+                await this.logoutFirebase()
             }
-            
         },
+        computed: {
+            error(){
+                return this.$store.getters.error
+            },
+            name(){
+                return this.$store.getters.info.name
+            }
+        },
+        watch: {
+            error(fbError) {
+                console.log(fbError)
+                this.$error(messages[fbError.code] || 'Что-то пошло не так')
+                // console.log('ошибка')
+            }
+        },
+        async mounted() {
+            // this.$message('Test')
+            if (messages[this.$route.query.message]){
+                this.$message(messages[this.$route.query.message])
+            }
+
+            if (!Object.keys(this.$store.getters.info).length){
+                await this.$store.dispatch('fetchInfo')
+            }
+        }
+        // async mounted(){
+        //     this.allUpdateIsAuth();
+        //     this.allUpdateIsAuth_();
+        // },
+        // computed: mapGetters(['allUpdateIsAuth', 'allUpdateIsAuth_'])
     }
 </script>
 
 <style>
+#toast-container{
+    position: absolute;
+    top:50px;
+    right: 100px;
+    z-index: 9999999;
+    opacity: 1;
+}
+.toast{
+    padding: 10px;
+    background-color: bisque;
+    color: black;
+    border-radius: 10px;
+}
 </style>
 
 

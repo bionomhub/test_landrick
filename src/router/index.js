@@ -633,6 +633,11 @@ const routes = [
     name: 'components',
     component: () => import('../views/components')
   },
+  {
+    path: '/test_vuex',
+    name: 'test_vuex',
+    component: () => import('../views/test_vuex')
+  },
 ]
 
 

@@ -18,6 +18,7 @@ import Navbar from "@/components/navbar";
 import Switcher from "@/components/switcher";
 import Footer from "@/components/footer";
 
+import {mapActions, mapGetters} from 'vuex'
 /**
  * Shop-myaccount component
  */
@@ -43,6 +44,22 @@ export default {
     UserIcon,
     UserCheckIcon
   },
+   async mounted() {
+      if (!Object.keys(this.$store.getters.info).length){
+          await this.$store.dispatch('fetchInfo')
+      }
+  },
+  computed: {
+      name(){
+          return this.$store.getters.info.name
+      }
+  },
+  methods: {
+    ...mapActions(['logoutFirebase']),
+     async logout(){
+        await this.logoutFirebase()
+    }
+  }
 };
 </script>
 
@@ -108,8 +125,8 @@ export default {
               alt=""
             />
             <div class="ml-3">
-              <h6 class="text-muted mb-0">Hello,</h6>
-              <h5 class="mb-0">Cally Joseph</h5>
+              <h6 class="text-muted mb-0">Добро пожаловать,</h6>
+              <h5 class="mb-0">{{name}}</h5>
             </div>
           </div>
           <div class="">
@@ -134,12 +151,13 @@ export default {
                 </template>
 
                 <h6 class="text-muted">
-                  Hello <span class="text-dark">cally_joseph</span> (not
-                  <span class="text-dark">cally_joseph</span>?
-                  <a href="javascript:void(0)" class="text-danger">Log out</a>)
+                  Добро пожаловать <span class="text-dark">{{name}}</span> (Вы не
+                  <span class="text-dark">{{name}}</span>?
+                  <a href="javascript:void(0)" class="text-danger">Выйти</a>)
+                  <!-- <button @click="logout">Выйти</button> -->
                 </h6>
 
-                <h6 class="text-muted mb-0">
+                <!-- <h6 class="text-muted mb-0">
                   From your account dashboard you can view your
                   <a href="javascript:void(0)" class="text-danger"
                     >recent orders</a
@@ -150,7 +168,7 @@ export default {
                   <a href="javascript:void(0)" class="text-danger"
                     >edit your password and account details</a
                   >.
-                </h6>
+                </h6> -->
               </b-tab>
               <b-tab title-link-class="border-top">
                 <template #title>

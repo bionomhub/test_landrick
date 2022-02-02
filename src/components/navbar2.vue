@@ -2,6 +2,7 @@
   /**
    * Navbar2 component
    */
+  // import {mapActions, mapGetters} from 'vuex'
   export default {
     data() {
       return {
@@ -21,6 +22,7 @@
     },
 
     mounted: () => {
+      // async mounted(){
       window.onscroll = function () {
         onwindowScroll();
       };
@@ -79,6 +81,11 @@
           }
         }
       }
+
+      // запрос на пользователя
+      // if (!Onject.keys(this.$store.getters.info).length){
+      //   await this.$store.dispatch('fetchInfo')
+      // }
     },
     methods: {
       /**

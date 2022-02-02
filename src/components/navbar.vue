@@ -742,6 +742,7 @@
                     <li>
                       <router-link to="/shop-grids" class="side-nav-link-ref">Скидки</router-link>
                     </li>
+                    
           
           </ul>
           <!--end navigation menu-->
