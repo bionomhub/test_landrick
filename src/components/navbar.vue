@@ -82,6 +82,11 @@
         }
       }
     },
+    computed: {
+      name(){
+          return this.$store.getters.info.name
+      }
+  },
     methods: {
       /**
        * Toggle menu
@@ -152,6 +157,8 @@
               </div>
             </b-dropdown>
           </li>
+
+<span v-if="!name">
           <li class="list-inline-item mb-0">
             <router-link to="/auth-signup" class="btn btn-icon btn-soft-primary" data-toggle="modal"
               data-target="#productview"><i class="mdi mdi-account-plus-outline mdi-18px icons"></i></router-link>
@@ -160,10 +167,13 @@
             <router-link to="/auth-login" class="btn btn-icon btn-soft-primary" data-toggle="modal"
               data-target="#productview"><i class="mdi mdi-login mdi-18px icons"></i></router-link>
           </li>
+</span>
+<span v-if="name">          
           <li class="list-inline-item mb-0">
             <router-link to="/shop-myaccount" class="btn btn-icon btn-soft-primary" data-toggle="modal"
               data-target="#productview"><i class="mdi mdi-account-outline mdi-18px icons"></i></router-link>
           </li>
+</span>          
         </ul>
         <!--end login button-->
         <!--end login button-->
