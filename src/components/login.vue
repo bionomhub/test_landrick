@@ -1,9 +1,5 @@
 <template>
     <div>
-        <!-- <p v-if="$store.state.isAuth === true">Авторизован</p>
-        <p v-else>Не авторизован</p> -->
-        <p>{{name}}</p>
-
         <h4 class="card-title text-center">Вход</h4>
         <form class="login-form mt-4" @submit.prevent="login">
             <div class="row">
@@ -73,8 +69,6 @@
                 </div>
             </div>
         </form>
-
-    <!-- <button @click="logout">logout</button> -->
     </div>
 </template>
 
@@ -93,7 +87,7 @@
             };
         },
         methods: {
-            ...mapActions(['loginFirebase', 'logoutFirebase']),
+            ...mapActions(['loginFirebase']),
            async login(){
                 try{
                  await this.loginFirebase({
@@ -105,9 +99,6 @@
                     console.log('ОШИБКАААА')
                 }   
             },
-            async logout(){
-                await this.logoutFirebase()
-            }
         },
         computed: {
             error(){
@@ -121,11 +112,9 @@
             error(fbError) {
                 console.log(fbError)
                 this.$error(messages[fbError.code] || 'Что-то пошло не так')
-                // console.log('ошибка')
             }
         },
         async mounted() {
-            // this.$message('Test')
             if (messages[this.$route.query.message]){
                 this.$message(messages[this.$route.query.message])
             }
@@ -134,11 +123,6 @@
                 await this.$store.dispatch('fetchInfo')
             }
         }
-        // async mounted(){
-        //     this.allUpdateIsAuth();
-        //     this.allUpdateIsAuth_();
-        // },
-        // computed: mapGetters(['allUpdateIsAuth', 'allUpdateIsAuth_'])
     }
 </script>
 

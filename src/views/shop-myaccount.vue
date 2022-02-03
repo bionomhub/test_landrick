@@ -18,7 +18,7 @@ import Navbar from "@/components/navbar";
 import Switcher from "@/components/switcher";
 import Footer from "@/components/footer";
 
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions} from 'vuex'
 /**
  * Shop-myaccount component
  */
@@ -56,9 +56,14 @@ export default {
   },
   methods: {
     ...mapActions(['logoutFirebase']),
-     async logout(){
-        await this.logoutFirebase()
-    }
+      async logout(){
+        try{
+          await this.logoutFirebase()
+          this.$router.push('/auth-login?message=logout')
+        } catch (e){
+            console.log('ОШИБКАААА')
+        }   
+    },
   }
 };
 </script>
@@ -153,8 +158,7 @@ export default {
                 <h6 class="text-muted">
                   Добро пожаловать <span class="text-dark">{{name}}</span> (Вы не
                   <span class="text-dark">{{name}}</span>?
-                  <a href="javascript:void(0)" class="text-danger">Выйти</a>)
-                  <!-- <button @click="logout">Выйти</button> -->
+                  <a href="#" class="text-danger" @click.prevent="logout">Выйти</a>)
                 </h6>
 
                 <!-- <h6 class="text-muted mb-0">

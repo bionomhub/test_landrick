@@ -4,8 +4,6 @@ export default {
         async loginFirebase({dispatch, commit}, {email, password}){
             try{
                 await firebase.auth().signInWithEmailAndPassword(email, password)
-                // ctx.commit('updateIsAuth')
-                // ctx.commit('updateIsAuth_')
             }catch (e){
                 commit('setError', e)
                 throw e
@@ -13,7 +11,7 @@ export default {
         },
 
         async logoutFirebase({commit}){
-            await firebase.auth().singOut()
+            await firebase.auth().signOut()
             commit('clearInfo')
         },
 
@@ -35,24 +33,4 @@ export default {
             return user ? user.uid : null
         }
     },
-    // state: {
-    //     isAuth: false,
-    //     isAuth_: 0,
-    // },
-    // mutations: {
-    //     updateIsAuth(state){
-    //         state.isAuth = !isAuth
-    //     },
-    //     updateIsAuth_(state){
-    //         state.isAuth_++
-    //     }
-    //  },
-    // getters: {
-    //     allUpdateIsAuth(state) {
-    //         return state.isAuth
-    //     },
-    //     allUpdateIsAuth_(state) {
-    //         return state.isAuth_
-    //     },
-    // }
 }
