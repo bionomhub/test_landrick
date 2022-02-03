@@ -53,7 +53,7 @@
 
 
                         <div class="col-6 mt-3">
-                            <a href="javascript:void(0)" class="btn btn-block btn-light"><i
+                            <a href="javascript:void(0)" class="btn btn-block btn-light" @click.prevent="loginGoogle"><i
                                     class="mdi mdi-google text-danger"></i>
                                 Google</a>
                         </div>
@@ -87,13 +87,21 @@
             };
         },
         methods: {
-            ...mapActions(['loginFirebase']),
+            ...mapActions(['loginFirebase', 'loginFirebaseGoogle']),
            async login(){
                 try{
                  await this.loginFirebase({
                     email: this.email,
                     password: this.password
                 })
+                this.$router.push('/shop-myaccount');
+                } catch (e){
+                    console.log('ОШИБКАААА')
+                }   
+            },
+            async loginGoogle(){
+                try{
+                 await this.loginFirebaseGoogle()
                 this.$router.push('/shop-myaccount');
                 } catch (e){
                     console.log('ОШИБКАААА')

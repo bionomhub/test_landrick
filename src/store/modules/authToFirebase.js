@@ -1,9 +1,21 @@
 import firebase from 'firebase/compat/app'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
+const provider = new GoogleAuthProvider();
+
 export default {
     actions: {
         async loginFirebase({dispatch, commit}, {email, password}){
             try{
                 await firebase.auth().signInWithEmailAndPassword(email, password)
+            }catch (e){
+                commit('setError', e)
+                throw e
+            }
+        },
+        async loginFirebaseGoogle({commit}, {provider}){
+            try{
+                await firebase.auth().signInWithPopup(provider)
             }catch (e){
                 commit('setError', e)
                 throw e
