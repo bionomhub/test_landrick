@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+// import axios from 'axios'
 // import post from './modules/post' // так же нужно добавить в modules
 import authToFirebase from './modules/authToFirebase'
 import info from './modules/info'
 import VuexPersist from 'vuex-persist'
+import product from './modules/product'
 
 const vuexPersist = new VuexPersist({
   key: 'my-app',
@@ -29,7 +31,8 @@ export default new Vuex.Store({
   },
   modules: {
     authToFirebase,
-    info
+    info,
+    product
   },
   plugins: [vuexPersist.plugin]
 })

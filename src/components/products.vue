@@ -1,19 +1,9 @@
+
+
 <template>
-  <div>
-    <p>lololol</p>
-
-    <!-- <div class="product_item" v-for="product in PRODUCTS" :key="product.id">
-      <img :src="product.image" alt="img-product">
-      <div class="product_item-into">
-        <h2 class="product_item-title">{{product.title}}</h2>
-        <p class="product_item-description">{{product.description}}</p>
-        <span class="product_item-price">{{product.price}} руб.</span>
-      </div>
-    </div> -->
-
-
-    <div class="row" v-for="product in PRODUCTS" :key="product.id">
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+  
+    <div class="row" >
+      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" v-for="product in PRODUCTS" :key="product.id">
         <div class="card shop-list border-0 position-relative overflow-hidden">
           <div class="shop-image position-relative overflow-hidden rounded shadow">
             <router-link to="/shop-product-detail"><img :src="product.image" class="img-fluid" alt="">
@@ -37,7 +27,7 @@
           <div class="card-body content pt-4 p-2">
             <router-link to="/shop-product-detail" class="text-dark product-name h6">{{product.title}}</router-link>
             <div class="d-flex justify-content-between mt-1">
-              <h6 class="text-muted small font-italic mb-0 mt-1">{{product.price}} руб.<del class="text-danger ml-2">{{product.price}} руб.</del> </h6>
+              <h6 class="text-muted small font-italic mb-0 mt-1">{{product.price}} руб.</h6>
               <ul class="list-unstyled text-warning mb-0">
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
@@ -51,26 +41,23 @@
       </div>
     </div>
 
-
-
-  </div>
 </template>
 
 <script>
+
+import {
+    ArrowUpIcon,
+    HeartIcon,
+    EyeIcon,
+    ShoppingCartIcon
+} from 'vue-feather-icons';
+
   import {
     mapActions,
     mapGetters
   } from 'vuex'
   export default {
-    data() {
-      return {
-        // products: {},
-        // info: '',
-        // res: {},
-        // json: {}
 
-      }
-    },
     async mounted() {
       this.$message('Test');
       this.GET_PRODUCTS_FROM_API()
@@ -81,10 +68,28 @@
     computed: {
       ...mapGetters(['PRODUCTS']),
     },
+    components:{
+        ArrowUpIcon,
+        HeartIcon,
+        EyeIcon,
+        ShoppingCartIcon
+    }
 
   }
 </script>
 
 <style>
+.img-fluid{
+    max-height: 150px;
+    max-width: 120px;
+}
+.shop-image.position-relative.overflow-hidden.rounded.shadow{
+    margin: 0 auto;
+    border: none !important;
+    box-shadow: none !important;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+}
 
 </style>
