@@ -1,4 +1,5 @@
 <script>
+import { mapGetters } from 'vuex';
   /**
    * Navbar component
    */
@@ -83,6 +84,7 @@
       }
     },
     computed: {
+      ...mapGetters(['get_TotalPositions']),
       name(){
           return this.$store.getters.info.name
       }
@@ -174,6 +176,11 @@
               data-target="#productview"><i class="mdi mdi-account-outline mdi-18px icons"></i></router-link>
           </li>
 </span>          
+          <li class="list-inline-item mb-0">
+            <router-link to="/shop-cart" class="btn btn-icon btn-soft-primary" data-toggle="modal"
+              data-target="#productview"><i class="mdi mdi-cart mdi-18px icons"></i><span id="cart_total_num" v-if="get_TotalPositions > 0">{{get_TotalPositions}}</span></router-link>
+          </li>
+
         </ul>
         <!--end login button-->
         <!--end login button-->
@@ -769,3 +776,14 @@
     <!-- Navbar End -->
   </div>
 </template>
+
+<style scoped>
+#cart_total_num{
+    position: absolute;
+    color: red;
+    top: 0px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-left: 5px;
+}
+</style>

@@ -6,6 +6,8 @@ import authToFirebase from './modules/authToFirebase'
 import info from './modules/info'
 import VuexPersist from 'vuex-persist'
 import product from './modules/product'
+import cart from './modules/cart'
+
 
 const vuexPersist = new VuexPersist({
   key: 'my-app',
@@ -32,7 +34,8 @@ export default new Vuex.Store({
   modules: {
     authToFirebase,
     info,
-    product
+    product,
+    cart
   },
   plugins: [vuexPersist.plugin]
 })

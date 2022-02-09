@@ -1,4 +1,5 @@
 <script>
+import {mapGetters, mapActions} from 'vuex'
 import {
     ArrowUpIcon
 } from 'vue-feather-icons';
@@ -18,39 +19,6 @@ export default {
     data() {
         return {
             counter: 0,
-            list: [{
-                    id: 1,
-                    image: 'images/shop/product/s1.jpg',
-                    title: 'T-Shirt',
-                    price: 255,
-                    qty: 2,
-                    total: 510
-                },
-                {
-                    id: 2,
-                    image: 'images/shop/product/s3.jpg',
-                    title: 'Branded Watch',
-                    price: 520,
-                    qty: 1,
-                    total: 520
-                },
-                {
-                    id: 3,
-                    image: 'images/shop/product/s6.jpg',
-                    title: 'T-Shirt',
-                    price: 160,
-                    qty: 4,
-                    total: 640
-                },
-                {
-                    id: 4,
-                    image: 'images/shop/product/s10.jpg',
-                    title: 'Branded Watch',
-                    price: 260,
-                    qty: 2,
-                    total: 520
-                }
-            ]
         }
     },
     components: {
@@ -62,24 +30,13 @@ export default {
         ArrowUpIcon
     },
     methods: {
-        increase(val) {
-            this.list.map(product => {
-                if (product.id === val) {
-                    product.qty += 1;
-                }
-            });
-        },
-        decrement(val) {
-            this.list.map(product => {
-                if (product.id === val) {
-                    while (product.qty > 0) {
-                        product.qty -= 1;
-                    }
-                }
+        ...mapActions(['increase_list', 'decrement_list', 'DELETE_TO_CART', 'act_sumTotal']),
+    },
+    computed:{
+        ...mapGetters([ 'get_cart', 'get_item', 'get_TotalPositions', 'get_basket_total', 'get_Total'])
+    },
 
-            });
-        }
-    }
+
 }
 </script>
 
@@ -143,42 +100,54 @@ export default {
                             </thead>
 
                             <tbody>
-                                <tr v-for="(item, index) of list" :key="index">
-                                    <td class="h6"><a href="javascript:void(0)" class="text-danger">X</a></td>
+                                <tr v-for="item in get_cart" :key="item.objectID">
+                                    <td class="h6"><a href="javascript:void(0)" class="text-danger" @click.prevent="">X</a></td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img :src="item.image" class="img-fluid avatar avatar-small rounded shadow" style="height:auto;" alt="">
-                                            <h6 class="mb-0 ml-3">{{item.title}}</h6>
+                                            <h6 class="mb-0 ml-3">{{item.brand}}</h6>
                                         </div>
                                     </td>
                                     <td class="text-center">$ {{item.price}}.00</td>
+                                    <!-- <td class="text-center"><p>{{item.id}}</p></td> -->
                                     <td class="text-center">
-                                        <input type="button" value="-" class="minus btn btn-icon btn-soft-primary font-weight-bold" @click="decrement(item.id)">
-                                        <input type="text" v-model="item.qty" step="1" min="1" name="quantity" value="2" title="Qty" class="btn btn-icon btn-soft-primary font-weight-bold ml-1">
-                                        <input type="button" value="+" class="plus btn btn-icon btn-soft-primary font-weight-bold ml-1" @click="increase(item.id)">
+                                        <input type="button" value="-" class="minus btn btn-icon btn-soft-primary font-weight-bold">
+                                        <input type="text" v-model="item.qt" step="1" min="1" name="quantity"  title="Qty" class="btn btn-icon btn-soft-primary font-weight-bold ml-1">
+                                        <input type="button" value="+" class="plus btn btn-icon btn-soft-primary font-weight-bold ml-1">
                                     </td>
-                                    <td class="text-center font-weight-bold">${{item.total}}.00</td>
+                                    <td class="text-center font-weight-bold">${{item.price}}.00</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
+                </div>                
+            </div>            
             <div class="row">
                 <div class="col-lg-8 col-md-6 mt-4 pt-2">
-                    <a href="javascript:void(0)" class="btn btn-primary">Shop More</a>
-                    <a href="javascript:void(0)" class="btn btn-soft-primary ml-2">Update Cart</a>
+                    <!-- <a href="javascript:void(0)" class="btn btn-primary">Shop More</a>
+                    <a href="javascript:void(0)" class="btn btn-soft-primary ml-2">Update Cart</a> -->
+                    <a @click.prevent="DELETE_TO_CART" class="btn btn-danger">Очистить корзину</a>
+                    <a @click.prevent="act_sumTotal" class="btn btn-soft-primary">суммы корзину</a>
+                    
+                    
                 </div>
                 <div class="col-lg-4 col-md-6 ml-auto mt-4 pt-2">
                     <div class="table-responsive bg-white rounded shadow">
                         <table class="table table-center table-padding mb-0">
                             <tbody>
                                 <tr>
-                                    <td class="h6">Subtotal</td>
-                                    <td class="text-center font-weight-bold">$ 2190</td>
+                                    <td class="h6">Количество товара</td>
+                                    <td class="text-center font-weight-bold">{{get_TotalPositions}}</td>
                                 </tr>
+                                <tr>
+                                    <td class="h6">Subtotal</td>
+                                    <td class="text-center font-weight-bold">{{get_basket_total}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="h6">get_Total</td>
+                                    <td class="text-center font-weight-bold">{{get_Total}}</td>
+                                </tr>
+                                
                                 <tr>
                                     <td class="h6">Taxes</td>
                                     <td class="text-center font-weight-bold">$ 219</td>
@@ -194,22 +163,29 @@ export default {
                         <router-link to="/shop-checkouts" class="btn btn-primary">Proceed to checkout</router-link>
                     </div>
                 </div>
-                <!--end col-->
             </div>
-            <!--end row-->
         </div>
-        <!--end container-->
     </section>
-    <!--end section-->
-    <!-- End -->
-    <!--end section-->
+
+    <!-- <p>сколько в корзине - {{get_cart}}</p> -->
+    <p>количество товаров в корзине - {{get_TotalPositions}}</p>
+    
     <Footer />
-    <!-- Footer End -->
     <Switcher />
-    <!-- Back to top -->
     <a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" v-scroll-to="'#topnav'">
         <arrow-up-icon class="icons"></arrow-up-icon>
     </a>
-    <!-- Back to top -->
 </div>
 </template>
+
+
+<style scoped>
+.cart_on_page{
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: azure;
+    max-width: 500px;
+    margin-left: 20px;
+}
+</style>

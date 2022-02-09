@@ -18,9 +18,9 @@
                 </router-link>
               </li>
               <li class="mt-2">
-                <router-link to="/shop-cart" class="btn btn-icon btn-pills btn-soft-warning">
+                <a class="btn btn-icon btn-pills btn-soft-warning" @click.prevent="ADD_TO_CART(product)">
                   <shopping-cart-icon class="icons"></shopping-cart-icon>
-                </router-link>
+                </a>
               </li>
             </ul>
           </div>
@@ -63,7 +63,8 @@ import {
       this.GET_PRODUCTS_FROM_API()
     },
     methods: {
-      ...mapActions(['GET_PRODUCTS_FROM_API']),
+      ...mapActions(['GET_PRODUCTS_FROM_API', 'ADD_TO_CART']),
+
     },
     computed: {
       ...mapGetters(['PRODUCTS']),
