@@ -50,7 +50,7 @@ export default {
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
                     <div class="page-next-level">
-                        <h4 class="title"> Shopping Cart </h4>
+                        <h4 class="title"> Корзина </h4>
                         <div class="page-next">
                             <nav aria-label="breadcrumb" class="d-inline-block">
                                 <ul class="breadcrumb bg-white rounded shadow mb-0">
@@ -58,9 +58,9 @@ export default {
                                         <router-link to="/">Landrick</router-link>
                                     </li>
                                     <li class="breadcrumb-item">
-                                        <router-link to="/index-shop">Shop</router-link>
+                                        <router-link to="/index-shop">Магазин</router-link>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Корзина</li>
                                 </ul>
                             </nav>
                         </div>

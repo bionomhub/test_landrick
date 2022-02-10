@@ -37,7 +37,10 @@ export default {
     },
     getters: {
         info : s => s.info,
-        info2 : s => s.info2
+        info2 : s => s.info2,
+        // get_products(state){
+        //     return state.info2
+        // }
     }
 }
 

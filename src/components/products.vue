@@ -63,7 +63,7 @@ import {
     async mounted() {
       // this.GET_PRODUCTS_FROM_API();
       
-      if (!Object.keys(this.$store.getters.info2).length){
+      if (!Object.keys(this.$store.getters.info3).length){
         await this.$store.dispatch('fetchInfo2')
       }
 
@@ -73,7 +73,7 @@ import {
 
     },
     computed: {
-      ...mapGetters(['PRODUCTS', 'info2']),
+      ...mapGetters(['PRODUCTS', 'get_products', 'info2']),
 
     },
     components:{
