@@ -18,7 +18,7 @@ import Navbar from "@/components/navbar";
 import Switcher from "@/components/switcher";
 import Footer from "@/components/footer";
 
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 /**
  * Shop-myaccount component
  */
@@ -50,9 +50,7 @@ export default {
       }
   },
   computed: {
-      name(){
-          return this.$store.getters.info.name
-      }
+    ...mapGetters(['info']),
   },
   methods: {
     ...mapActions(['logoutFirebase']),
@@ -71,6 +69,7 @@ export default {
 <template>
   <div>
     <Navbar />
+   
 
     <!-- Hero Start -->
     <section class="bg-half bg-light d-table w-100">
@@ -131,7 +130,7 @@ export default {
             />
             <div class="ml-3">
               <h6 class="text-muted mb-0">Добро пожаловать,</h6>
-              <h5 class="mb-0">{{name}}</h5>
+              <h5 class="mb-0">{{info.name}}</h5>
             </div>
           </div>
           <div class="">
@@ -156,8 +155,8 @@ export default {
                 </template>
 
                 <h6 class="text-muted">
-                  Добро пожаловать <span class="text-dark">{{name}}</span> (Вы не
-                  <span class="text-dark">{{name}}</span>?
+                  Добро пожаловать <span class="text-dark">{{info.name}}</span> (Вы не
+                  <span class="text-dark">{{info.name}}</span>?
                   <a href="#" class="text-danger" @click.prevent="logout">Выйти</a>)
                 </h6>
 

@@ -30,7 +30,7 @@ export default {
         ArrowUpIcon
     },
     methods: {
-        ...mapActions(['increase_list', 'decrement_list', 'DELETE_TO_CART', 'act_sumTotal']),
+        ...mapActions(['increase_list', 'decrement_list', 'DELETE_TO_CART', 'act_sumTotal', 'removeItem']),
     },
     computed:{
         ...mapGetters([ 'get_cart', 'get_item', 'get_TotalPositions', 'get_basket_total', 'get_Total'])
@@ -100,8 +100,8 @@ export default {
                             </thead>
 
                             <tbody>
-                                <tr v-for="item in get_cart" :key="item.objectID">
-                                    <td class="h6"><a href="javascript:void(0)" class="text-danger" @click.prevent="">X</a></td>
+                                <tr v-for="item in get_cart" :key="item.id">
+                                    <td class="h6"><a href="javascript:void(0)" class="text-danger" @click.prevent="removeItem(item.id)">X</a></td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img :src="item.image" class="img-fluid avatar avatar-small rounded shadow" style="height:auto;" alt="">
@@ -111,9 +111,9 @@ export default {
                                     <td class="text-center">$ {{item.price}}.00</td>
                                     <!-- <td class="text-center"><p>{{item.id}}</p></td> -->
                                     <td class="text-center">
-                                        <input type="button" value="-" class="minus btn btn-icon btn-soft-primary font-weight-bold">
+                                        <input type="button" value="-" class="minus btn btn-icon btn-soft-primary font-weight-bold" @click.prevent="decrement_list(item.id)">
                                         <input type="text" v-model="item.qt" step="1" min="1" name="quantity"  title="Qty" class="btn btn-icon btn-soft-primary font-weight-bold ml-1">
-                                        <input type="button" value="+" class="plus btn btn-icon btn-soft-primary font-weight-bold ml-1">
+                                        <input type="button" value="+" class="plus btn btn-icon btn-soft-primary font-weight-bold ml-1"  @click.prevent="increase_list(item.id)">
                                     </td>
                                     <td class="text-center font-weight-bold">${{item.price}}.00</td>
                                 </tr>
