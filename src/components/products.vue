@@ -66,7 +66,11 @@ import {
       // if (!Object.keys(this.$store.getters.info3).length){
       //   await this.$store.dispatch('fetchInfo2')
       // }
-      this.action_productions;
+      // this.action_productions();
+        
+      if (!Object.keys(this.$store.getters.get_products).length){
+        await this.$store.dispatch('action_productions')
+      }
 
     },
     methods: {
