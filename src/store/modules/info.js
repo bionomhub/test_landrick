@@ -3,7 +3,7 @@ import firebase from 'firebase/compat/app'
 export default {
     state: {
         info: {},
-        info2: []
+        products_all: []
     },
     mutations:{
         setInfo(state, info){
@@ -12,8 +12,8 @@ export default {
         clearInfo(state){
             state.info = {}
         },
-        setInfo2(state, info2){
-            state.info2 = info2
+        set_productions(state, products_fb){
+            state.products_all = products_fb
         },
     },
     actions: {
@@ -26,10 +26,10 @@ export default {
 
             }
         },
-        async fetchInfo2({commit}){
+        async action_productions({commit}){
             try{
-                const info2 = (await firebase.database().ref('/products').once('value'))
-                commit('setInfo2', info2)
+                const products_fb = (await firebase.database().ref('/products').once('value'))
+                commit('set_productions', products_fb)
             } catch (e) {
 
             }
@@ -37,10 +37,10 @@ export default {
     },
     getters: {
         info : s => s.info,
-        info2 : s => s.info2,
-        // get_products(state){
-        //     return state.info2
-        // }
+        // info2 : s => s.info2,
+        get_products(state){
+            return state.products_all
+        }
     }
 }
 
