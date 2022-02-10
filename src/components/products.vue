@@ -4,7 +4,6 @@
   
     <div class="row" >
       <div>
-         <!-- {{info2}} -->
       </div>
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" v-for="product in info2" :key="product.id">
         <div class="card shop-list border-0 position-relative overflow-hidden">
@@ -62,8 +61,7 @@ import {
   export default {
 
     async mounted() {
-      this.$message('Test');
-      this.GET_PRODUCTS_FROM_API();
+      // this.GET_PRODUCTS_FROM_API();
       
       if (!Object.keys(this.$store.getters.info2).length){
         await this.$store.dispatch('fetchInfo2')
@@ -71,7 +69,7 @@ import {
 
     },
     methods: {
-      ...mapActions(['GET_PRODUCTS_FROM_API', 'ADD_TO_CART', ]),
+      ...mapActions(['GET_PRODUCTS_FROM_API', 'ADD_TO_CART' ]),
 
     },
     computed: {
