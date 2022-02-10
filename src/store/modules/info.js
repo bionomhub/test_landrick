@@ -3,7 +3,7 @@ import firebase from 'firebase/compat/app'
 export default {
     state: {
         info: {},
-        products_all: []
+        products_all: {}
     },
     mutations:{
         setInfo(state, info){
