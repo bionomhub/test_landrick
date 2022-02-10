@@ -68,8 +68,11 @@ import {
       // }
       // this.action_productions();
         
-      if (!Object.keys(this.$store.getters.get_products).length){
-        await this.$store.dispatch('action_productions')
+      // if (!Object.keys(this.$store.getters.get_products).length){
+      //   await this.$store.dispatch('action_productions')
+      // }
+      if (!Object.keys(this.get_products).length){
+        await this.action_productions();
       }
 
     },
