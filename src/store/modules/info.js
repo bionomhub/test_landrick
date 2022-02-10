@@ -31,7 +31,7 @@ export default {
                 const products_fb = (await firebase.database().ref('/products').once('value')).val()
                 commit('set_productions', products_fb)
             } catch (e) {
-
+ 
             }
         }
     },
