@@ -30,7 +30,7 @@ export default {
         ArrowUpIcon
     },
     methods: {
-        ...mapActions(['increase_list', 'decrement_list', 'DELETE_TO_CART', 'act_sumTotal']),
+        ...mapActions(['increase_count', 'decrement_count', 'DELETE_TO_CART', 'removeItem']),
     },
     computed:{
         ...mapGetters([ 'get_cart', 'get_item', 'get_TotalPositions', 'get_basket_total', 'get_Total'])
@@ -50,7 +50,7 @@ export default {
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
                     <div class="page-next-level">
-                        <h4 class="title"> Shopping Cart </h4>
+                        <h4 class="title"> Корзина </h4>
                         <div class="page-next">
                             <nav aria-label="breadcrumb" class="d-inline-block">
                                 <ul class="breadcrumb bg-white rounded shadow mb-0">
@@ -58,9 +58,9 @@ export default {
                                         <router-link to="/">Landrick</router-link>
                                     </li>
                                     <li class="breadcrumb-item">
-                                        <router-link to="/index-shop">Shop</router-link>
+                                        <router-link to="/index-shop">Магазин</router-link>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Корзина</li>
                                 </ul>
                             </nav>
                         </div>
@@ -70,6 +70,7 @@ export default {
             </div>
             <!--end row-->
         </div>
+ 
         <!--end container-->
     </section>
     <!--end section-->
@@ -84,7 +85,7 @@ export default {
 
     <!-- Start -->
     <section class="section">
-        <div class="container">
+        <div class="container" v-if="get_Total">
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive bg-white shadow">
@@ -100,8 +101,8 @@ export default {
                             </thead>
 
                             <tbody>
-                                <tr v-for="item in get_cart" :key="item.objectID">
-                                    <td class="h6"><a href="javascript:void(0)" class="text-danger" @click.prevent="">X</a></td>
+                                <tr v-for="item in get_cart" :key="item.id">
+                                    <td class="h6"><a href="javascript:void(0)" class="text-danger" @click.prevent="removeItem(item.id)">X</a></td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img :src="item.image" class="img-fluid avatar avatar-small rounded shadow" style="height:auto;" alt="">
@@ -109,11 +110,10 @@ export default {
                                         </div>
                                     </td>
                                     <td class="text-center">$ {{item.price}}.00</td>
-                                    <!-- <td class="text-center"><p>{{item.id}}</p></td> -->
                                     <td class="text-center">
-                                        <input type="button" value="-" class="minus btn btn-icon btn-soft-primary font-weight-bold">
+                                        <input type="button" value="-" class="minus btn btn-icon btn-soft-primary font-weight-bold" @click.prevent="decrement_count(item.id)">
                                         <input type="text" v-model="item.qt" step="1" min="1" name="quantity"  title="Qty" class="btn btn-icon btn-soft-primary font-weight-bold ml-1">
-                                        <input type="button" value="+" class="plus btn btn-icon btn-soft-primary font-weight-bold ml-1">
+                                        <input type="button" value="+" class="plus btn btn-icon btn-soft-primary font-weight-bold ml-1"  @click.prevent="increase_count(item.id)">
                                     </td>
                                     <td class="text-center font-weight-bold">${{item.price}}.00</td>
                                 </tr>
@@ -127,7 +127,6 @@ export default {
                     <!-- <a href="javascript:void(0)" class="btn btn-primary">Shop More</a>
                     <a href="javascript:void(0)" class="btn btn-soft-primary ml-2">Update Cart</a> -->
                     <a @click.prevent="DELETE_TO_CART" class="btn btn-danger">Очистить корзину</a>
-                    <a @click.prevent="act_sumTotal" class="btn btn-soft-primary">суммы корзину</a>
                     
                     
                 </div>
@@ -136,26 +135,22 @@ export default {
                         <table class="table table-center table-padding mb-0">
                             <tbody>
                                 <tr>
-                                    <td class="h6">Количество товара</td>
+                                    <td class="h6">Количество товаров</td>
                                     <td class="text-center font-weight-bold">{{get_TotalPositions}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="h6">Subtotal</td>
-                                    <td class="text-center font-weight-bold">{{get_basket_total}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="h6">get_Total</td>
+                                    <td class="h6">Итого:</td>
                                     <td class="text-center font-weight-bold">{{get_Total}}</td>
                                 </tr>
                                 
-                                <tr>
+                                <!-- <tr>
                                     <td class="h6">Taxes</td>
                                     <td class="text-center font-weight-bold">$ 219</td>
                                 </tr>
                                 <tr class="bg-light">
                                     <td class="h6">Total</td>
                                     <td class="text-center font-weight-bold">$ 2409</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -165,11 +160,10 @@ export default {
                 </div>
             </div>
         </div>
+            <div class="container" v-else>
+                <p style="text-align:center">В вашей корзине пока ничего нет</p>
+            </div>
     </section>
-
-    <!-- <p>сколько в корзине - {{get_cart}}</p> -->
-    <p>количество товаров в корзине - {{get_TotalPositions}}</p>
-    
     <Footer />
     <Switcher />
     <a href="javascript: void(0);" class="btn btn-icon btn-primary back-to-top" id="back-to-top" v-scroll-to="'#topnav'">

@@ -3,7 +3,9 @@
 <template>
   
     <div class="row" >
-      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" v-for="product in PRODUCTS" :key="product.id">
+      <div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" v-for="product in info2" :key="product.id">
         <div class="card shop-list border-0 position-relative overflow-hidden">
           <div class="shop-image position-relative overflow-hidden rounded shadow">
             <router-link to="/shop-product-detail"><img :src="product.image" class="img-fluid" alt="">
@@ -59,15 +61,20 @@ import {
   export default {
 
     async mounted() {
-      this.$message('Test');
-      this.GET_PRODUCTS_FROM_API()
+      // this.GET_PRODUCTS_FROM_API();
+      
+      if (!Object.keys(this.$store.getters.info3).length){
+        await this.$store.dispatch('fetchInfo2')
+      }
+
     },
     methods: {
-      ...mapActions(['GET_PRODUCTS_FROM_API', 'ADD_TO_CART']),
+      ...mapActions(['GET_PRODUCTS_FROM_API', 'ADD_TO_CART' ]),
 
     },
     computed: {
-      ...mapGetters(['PRODUCTS']),
+      ...mapGetters(['PRODUCTS', 'get_products', 'info2']),
+
     },
     components:{
         ArrowUpIcon,

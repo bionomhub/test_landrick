@@ -60,12 +60,12 @@ firebase.auth().onAuthStateChanged(() => {
   if(!app){
     app = new Vue({
       router,
-      store,
+      store,    
       render: h => h(App)
     }).$mount('#app')
   }
-})
-
+  })
+  this.$store.dispatch('fetchProducts')
 // const app = new Vue({
 //   el: '#app',
 //   // указываем хранилище в опции «store», что обеспечит
