@@ -6,7 +6,7 @@
       <div>
       </div>
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" v-for="product in get_products" :key="product.id">
-        <div class="card shop-list border-0 position-relative overflow-hidden">
+        <div class="card shop-list border-0 position-relative overflow-hidden" @click.prevent="click_product(product.id)">
           <div class="shop-image position-relative overflow-hidden rounded shadow">
             <router-link to="/shop-product-detail"><img :src="product.image" class="img-fluid" alt="">
             </router-link>
@@ -61,24 +61,19 @@ import {
   export default {
 
     async mounted() {
-      // this.GET_PRODUCTS_FROM_API();
-      
-      // if (!Object.keys(this.$store.getters.info3).length){
-      //   await this.$store.dispatch('fetchInfo2')
-      // }
-        
       if (!Object.keys(this.get_products).length){
-        await this.action_productions();
+        await this.GET_PRODUCTS_FROM_FB();
       }
 
     },
     methods: {
-      ...mapActions(['GET_PRODUCTS_FROM_API', 'ADD_TO_CART', 'action_productions' ]),
-
+      ...mapActions([ 'ADD_TO_CART', 'GET_PRODUCTS_FROM_FB' ]),
+      click_product(item){
+        console.log(item)
+      }
     },
     computed: {
-      ...mapGetters(['PRODUCTS', 'get_products']),
-
+      ...mapGetters([ 'get_products' ]),
     },
     components:{
         ArrowUpIcon,
