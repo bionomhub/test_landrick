@@ -66,8 +66,6 @@ export default {
 <template>
   <div>
     <Navbar :isIcons="true" />
-{{countval_product}}
-  <!-- <h1>Товар номер {{ get_click_product_id.id }}</h1> -->
     <!-- Hero Start -->
     <section class="bg-half bg-light d-table w-100">
       <div class="container">
