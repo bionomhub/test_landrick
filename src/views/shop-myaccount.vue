@@ -18,7 +18,7 @@ import Navbar from "@/components/navbar";
 import Switcher from "@/components/switcher";
 import Footer from "@/components/footer";
 
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex';
 /**
  * Shop-myaccount component
  */
@@ -44,32 +44,40 @@ export default {
     UserIcon,
     UserCheckIcon
   },
-   async mounted() {
-      if (!Object.keys(this.$store.getters.info).length){
-          await this.$store.dispatch('fetchInfo')
-      }
+  computed:{
+    ...mapGetters(['info'])
   },
-  computed: {
-    ...mapGetters(['info']),
+  async mounted() {
+    // if (!Object.keys(this.info).length){
+    //    await this.fetchInfo()
+    // }
+    // this.fetchInfo()
+    // if (!Object.keys(this.$store.getters.info).length){
+    //       await this.$store.dispatch('fetchInfo')
+    //   }
+    if(this.info === null){
+      this.fetchInfo()
+    }
   },
-  methods: {
-    ...mapActions(['logoutFirebase']),
-      async logout(){
+  methods:{
+    ...mapActions(['fetchInfo', 'logoutFirebase', 'mut_clearInfo']),
+    async logout(){
         try{
-          await this.logoutFirebase()
-          this.$router.push('/auth-login?message=logout')
+          await this.logoutFirebase();
+          this.mut_clearInfo;
+          this.$router.push('/auth-login?message=logout');
         } catch (e){
-            console.log('ОШИБКАААА')
+            console.log('ОШИБКАААА');
         }   
     },
-  }
+    
+  },
 };
 </script>
 
 <template>
   <div>
     <Navbar />
-   
 
     <!-- Hero Start -->
     <section class="bg-half bg-light d-table w-100">
@@ -129,7 +137,7 @@ export default {
               alt=""
             />
             <div class="ml-3">
-              <h6 class="text-muted mb-0">Добро пожаловать,</h6>
+              <h6 class="text-muted mb-0">Hello,</h6>
               <h5 class="mb-0">{{info.name}}</h5>
             </div>
           </div>
@@ -155,7 +163,7 @@ export default {
                 </template>
 
                 <h6 class="text-muted">
-                  Добро пожаловать <span class="text-dark">{{info.name}}</span> (Вы не
+                  Hello <span class="text-dark">{{info.name}}</span> (not
                   <span class="text-dark">{{info.name}}</span>?
                   <a href="#" class="text-danger" @click.prevent="logout">Выйти</a>)
                 </h6>

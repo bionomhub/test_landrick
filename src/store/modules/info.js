@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app'
 
+
 export default {
     state: {
         info: {},
@@ -22,9 +23,15 @@ export default {
 
             }
         },
+        mut_clearInfo({commit}){
+            commit('clearInfo')
+        }
     },
     getters: {
         info : s => s.info,
+        // info(state){
+        //     return state.info
+        // }
     }
 }
 
