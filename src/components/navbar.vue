@@ -33,9 +33,9 @@ import { mapGetters } from 'vuex';
           document.body.scrollTop > 50 ||
           document.documentElement.scrollTop > 50
         ) {
-          document.getElementById("topnav").classList.add("nav-sticky");
+          // document.getElementById("topnav").classList.add("nav-sticky");
         } else {
-          document.getElementById("topnav").classList.remove("nav-sticky");
+          // document.getElementById("topnav").classList.remove("nav-sticky");
         }
 
         if (

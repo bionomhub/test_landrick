@@ -14,6 +14,7 @@ import "vue-slick-carousel/dist/vue-slick-carousel.css";
 import Navbar from "@/components/navbar";
 import Switcher from "@/components/switcher";
 import Footer from "@/components/footer";
+import { mapGetters, mapActions } from 'vuex';
 
 /**
  * Shop-product-detail component
@@ -40,6 +41,7 @@ export default {
     UserIcon,
   },
   methods: {
+    ...mapActions(['ADD_TO_CART']),
     increment() {
       this.countval++;
     },
@@ -47,13 +49,25 @@ export default {
       if (this.countval > 0) this.countval--;
     },
   },
+
+  computed: {
+    ...mapGetters(['get_click_product_id']),
+      productId () {
+          return +this.$route.params.id;
+      },
+      countval_product(){
+        return this.countval;
+      }
+      
+  }
 };
 </script>
 
 <template>
   <div>
     <Navbar :isIcons="true" />
-
+{{countval_product}}
+  <!-- <h1>Товар номер {{ get_click_product_id.id }}</h1> -->
     <!-- Hero Start -->
     <section class="bg-half bg-light d-table w-100">
       <div class="container">
@@ -116,42 +130,42 @@ export default {
             >
               <div>
                 <img
-                  src="images/shop/product/single-2.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid rounded"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="images/shop/product/single-3.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid rounded"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="images/shop/product/single-4.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid rounded"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="images/shop/product/single-5.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid rounded"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="images/shop/product/single-6.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid rounded"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="images/shop/product/single-3.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid rounded"
                   alt=""
                 />
@@ -214,9 +228,9 @@ export default {
 
           <div class="col-md-7 mt-4 mt-sm-0 pt-2 pt-sm-0">
             <div class="section-title ml-md-4">
-              <h4 class="title">Branded T-Shirts</h4>
+              <h4 class="title">{{get_click_product_id.title}}</h4>
               <h5 class="text-muted">
-                $21.00 <del class="text-danger ml-2">$25.00</del>
+                {{get_click_product_id.price}} <del class="text-danger ml-2">{{get_click_product_id.price}}</del>
               </h5>
               <ul class="list-unstyled text-warning h5 mb-0">
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
@@ -228,10 +242,7 @@ export default {
 
               <h5 class="mt-4 py-2">Overview :</h5>
               <p class="text-muted">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-                exercitationem, unde molestiae sint quae inventore atque minima
-                natus fugiat nihil quisquam voluptates ea omnis. Modi laborum
-                soluta tempore unde accusantium.
+                {{get_click_product_id.description}}
               </p>
 
               <ul class="list-unstyled text-muted">
@@ -258,44 +269,45 @@ export default {
               <div class="row mt-4 pt-2">
                 <div class="col-lg-6 col-12">
                   <div class="d-flex align-items-center">
-                    <h6 class="mb-0">Your Size:</h6>
+                    <h6 class="mb-0">Объем:</h6>
                     <ul class="list-unstyled mb-0 ml-3">
                       <li class="list-inline-item">
                         <a
                           href="javascript:void(0)"
                           class="btn btn-icon btn-soft-primary"
-                          >S</a
+                          >50</a
                         >
                       </li>
                       <li class="list-inline-item ml-1">
                         <a
                           href="javascript:void(0)"
                           class="btn btn-icon btn-soft-primary"
-                          >M</a
+                          >100</a
                         >
                       </li>
                       <li class="list-inline-item ml-1">
                         <a
                           href="javascript:void(0)"
                           class="btn btn-icon btn-soft-primary"
-                          >L</a
+                          >150</a
                         >
                       </li>
                       <li class="list-inline-item ml-1">
                         <a
                           href="javascript:void(0)"
                           class="btn btn-icon btn-soft-primary"
-                          >XL</a
+                          >200</a
                         >
                       </li>
                     </ul>
+                    <!-- <p class="mb-0">мл</p> -->
                   </div>
                 </div>
                 <!--end col-->
 
                 <div class="col-lg-6 col-12 mt-4 mt-lg-0">
                   <div class="d-flex shop-list align-items-center">
-                    <h6 class="mb-0">Quantity:</h6>
+                    <h6 class="mb-0">Количество:</h6>
                     <div class="ml-3">
                       <input
                         type="button"
@@ -330,9 +342,10 @@ export default {
                 <a href="javascript:void(0)" class="btn btn-primary"
                   >Shop Now</a
                 >
-                <router-link to="/shop-cart" class="btn btn-soft-primary ml-2"
+                <!-- <router-link to="/shop-cart" class="btn btn-soft-primary ml-2"
                   >Add to Cart</router-link
-                >
+                > -->
+                 <a class="btn btn-soft-primary ml-2" @click.prevent="ADD_TO_CART(get_click_product_id)">Добавить в корзину</a>
               </div>
             </div>
           </div>
@@ -350,28 +363,20 @@ export default {
                 <template #title>
                   <span class="nav-link py-2 px-5">
                     <div class="text-center">
-                      <h6 class="mb-0">Description</h6>
+                      <h6 class="mb-0">Описание</h6>
                     </div></span
                   >
                 </template>
 
                 <p class="text-muted mb-0">
-                  Due to its widespread use as filler text for layouts,
-                  non-readability is of great importance: human perception is
-                  tuned to recognize certain patterns and repetitions in texts.
-                  If the distribution of letters and 'words' is random, the
-                  reader will not be distracted from making a neutral judgement
-                  on the visual impact and readability of the typefaces
-                  (typography), or the distribution of text on the page (layout
-                  or type area). For this reason, dummy text usually consists of
-                  a more or less random series of words or syllables.
+                 {{get_click_product_id.description}}
                 </p>
               </b-tab>
               <b-tab title-item-class="m-1">
                 <template #title>
                   <span class="nav-link py-2 px-5 rounded">
                     <div class="text-center">
-                      <h6 class="mb-0">Additional Information</h6>
+                      <h6 class="mb-0">Дополнительная информация</h6>
                     </div>
                   </span>
                 </template>
@@ -398,7 +403,7 @@ export default {
                 <template #title>
                   <span class="nav-link py-2 px-5 rounded">
                     <div class="text-center">
-                      <h6 class="mb-0">Review</h6>
+                      <h6 class="mb-0">Отзывы</h6>
                     </div>
                   </span>
                 </template>
@@ -735,7 +740,7 @@ export default {
       <div class="container mt-100 mt-60">
         <div class="row">
           <div class="col-12">
-            <h5 class="mb-0">Related Products</h5>
+            <h5 class="mb-0">Похожие продукты</h5>
           </div>
           <!--end col-->
 

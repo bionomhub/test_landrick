@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -339,7 +338,7 @@ const routes = [
     component: () => import('../views/shop-grids-2')
   },
   {
-    path: '/shop-product-detail',
+    path: '/shop-product-detail/:id',
     name: 'shop-product-detail',
     component: () => import('../views/shop-product-detail')
   },
@@ -637,6 +636,11 @@ const routes = [
     path: '/test_vuex',
     name: 'test_vuex',
     component: () => import('../views/test_vuex')
+  },
+  {
+    path: '/products/:id',
+    name: 'productsCard',
+    component: () => import('../components/ProductsCard')
   },
 ]
 
