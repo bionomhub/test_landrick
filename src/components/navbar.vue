@@ -780,10 +780,14 @@ import { mapGetters } from 'vuex';
 <style scoped>
 #cart_total_num{
     position: absolute;
-    color: red;
-    top: 0px;
+    color: white;
+    top: 5px;
     border-radius: 20px;
-    font-size: 12px;
-    margin-left: 5px;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    margin-left: -5px;
+    background-color: red;
+    transform: scale(0.7);
 }
 </style>
