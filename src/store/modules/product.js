@@ -26,12 +26,16 @@ export default {
             } catch (e) {
 
             }
+        },
+        click_product({commit}, click_product){
+            commit('push_id_product', click_product)
         }
     },
     state: {
         // products_fb:[],
         // products: [],
-        products_all: {}
+        products_all: {},
+        click_product_id: {},
     },
     mutations: {
         // SET_PRODUCTS_TO_STATE: (state, products) => {
@@ -40,6 +44,9 @@ export default {
         set_productions(state, products_fb){
             state.products_all = products_fb
         },
+        push_id_product(state, click_product){
+            state.click_product_id = click_product
+        }
     },
     getters: {
         // PRODUCTS(state) {
@@ -47,6 +54,10 @@ export default {
         // },
         get_products(state){
             return state.products_all
+        },
+        get_click_product_id(state){
+            return  state.click_product_id 
+            
         }
         
 
