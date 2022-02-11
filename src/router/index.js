@@ -338,7 +338,7 @@ const routes = [
     component: () => import('../views/shop-grids-2')
   },
   {
-    path: '/shop-product-detail/:id',
+    path: '/shop-product-detail',
     name: 'shop-product-detail',
     component: () => import('../views/shop-product-detail')
   },

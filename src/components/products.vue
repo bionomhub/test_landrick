@@ -8,14 +8,14 @@
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" v-for="product in get_products" :key="product.id">
         <div class="card shop-list border-0 position-relative overflow-hidden" @click.prevent="click_product(product)">
           <div class="shop-image position-relative overflow-hidden rounded shadow">
-            <router-link :to='`/shop-product-detail/${product.id}`'><img :src="product.image" class="img-fluid_" alt="">
+            <router-link to='/shop-product-detail'><img :src="product.image" class="img-fluid_" alt="">
             </router-link>
             <ul class="list-unstyled shop-icons">
               <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger">
                   <heart-icon class="icons"></heart-icon>
                 </a></li>
               <li class="mt-2">
-                <router-link :to='`/shop-product-detail/${product.id}`' class="btn btn-icon btn-pills btn-soft-primary">
+                <router-link to='/shop-product-detail' class="btn btn-icon btn-pills btn-soft-primary">
                   <eye-icon class="icons"></eye-icon>
                 </router-link>
               </li>
@@ -27,7 +27,7 @@
             </ul>
           </div>
           <div class="card-body content pt-4 p-2">
-            <router-link :to='`/shop-product-detail/${product.id}`' class="text-dark product-name h6">{{product.title}}</router-link>
+            <router-link to='/shop-product-detail' class="text-dark product-name h6">{{product.title}}</router-link>
             <div class="d-flex justify-content-between mt-1">
               <h6 class="text-muted small font-italic mb-0 mt-1">{{product.price}} руб.</h6>
               <ul class="list-unstyled text-warning mb-0">

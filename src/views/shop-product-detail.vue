@@ -180,42 +180,42 @@ export default {
             >
               <div>
                 <img
-                  src="images/shop/product/single-2.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="images/shop/product/single-3.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="images/shop/product/single-4.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="images/shop/product/single-5.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="images/shop/product/single-6.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  src="images/shop/product/single-3.jpg"
+                  :src="get_click_product_id.image"
                   class="img-fluid"
                   alt=""
                 />
