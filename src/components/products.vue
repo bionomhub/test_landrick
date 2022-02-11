@@ -8,7 +8,7 @@
       <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" v-for="product in get_products" :key="product.id">
         <div class="card shop-list border-0 position-relative overflow-hidden" @click.prevent="click_product(product)">
           <div class="shop-image position-relative overflow-hidden rounded shadow">
-            <router-link :to='`/shop-product-detail/${product.id}`'><img :src="product.image" class="img-fluid" alt="">
+            <router-link :to='`/shop-product-detail/${product.id}`'><img :src="product.image" class="img-fluid_" alt="">
             </router-link>
             <ul class="list-unstyled shop-icons">
               <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger">
@@ -90,7 +90,7 @@ import {
 </script>
 
 <style>
-.img-fluid{
+.img-fluid_{
     max-height: 150px;
     max-width: 120px;
 }
