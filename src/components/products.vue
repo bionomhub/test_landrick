@@ -61,30 +61,19 @@ import {
   export default {
 
     async mounted() {
-      // this.GET_PRODUCTS_FROM_API();
-      
-      // if (!Object.keys(this.$store.getters.info3).length){
-      //   await this.$store.dispatch('fetchInfo2')
-      // }
-      // this.action_productions();
-        
-      // if (!Object.keys(this.$store.getters.get_products).length){
-      //   await this.$store.dispatch('action_productions')
-      // }
       if (!Object.keys(this.get_products).length){
-        await this.action_productions();
+        await this.GET_PRODUCTS_FROM_FB();
       }
 
     },
     methods: {
-      ...mapActions(['GET_PRODUCTS_FROM_API', 'ADD_TO_CART', 'action_productions' ]),
+      ...mapActions([ 'ADD_TO_CART', 'GET_PRODUCTS_FROM_FB' ]),
       click_product(item){
         console.log(item)
       }
     },
     computed: {
-      ...mapGetters(['PRODUCTS', 'get_products']),
-
+      ...mapGetters([ 'get_products' ]),
     },
     components:{
         ArrowUpIcon,

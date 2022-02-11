@@ -18,7 +18,8 @@ export default {
         //             return error;
         //         })
         // },
-        async action_productions({commit}){
+        
+        async GET_PRODUCTS_FROM_FB({commit}){
             try{
                 const products_fb = (await firebase.database().ref('/products').once('value')).val()
                 commit('set_productions', products_fb)
