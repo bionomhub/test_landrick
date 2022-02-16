@@ -7,6 +7,7 @@ import info from './modules/info'
 import VuexPersist from 'vuex-persist'
 import product from './modules/product'
 import cart from './modules/cart'
+import orders from './modules/orders'
 
 
 const vuexPersist = new VuexPersist({
@@ -35,7 +36,8 @@ export default new Vuex.Store({
     authToFirebase,
     info,
     product,
-    cart
+    cart,
+    orders
   },
   plugins: [vuexPersist.plugin]
 })

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+
 const routes = [
   {
     path: '/',
@@ -360,7 +361,7 @@ const routes = [
   {
     path: '/shop-myaccount',
     name: 'shop-myaccount',
-    component: () => import('../views/shop-myaccount')
+    component: () => import('../views/shop-myaccount'),
   },
   {
     path: '/helpcenter-overview',
@@ -653,5 +654,4 @@ const router = new VueRouter({
     return { x: 0, y: 0 }
   }
 })
-
 export default router

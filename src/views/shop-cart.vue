@@ -30,7 +30,7 @@ export default {
         ArrowUpIcon
     },
     methods: {
-        ...mapActions(['increase_count', 'decrement_count', 'DELETE_TO_CART', 'removeItem']),
+        ...mapActions(['increase_count', 'decrement_count', 'DELETE_TO_CART', 'removeItem',]),
     },
     computed:{
         ...mapGetters([ 'get_cart', 'get_item', 'get_TotalPositions', 'get_basket_total', 'get_Total'])
@@ -99,7 +99,7 @@ export default {
                                     <th class="text-center py-3" style="min-width: 160px;">Total</th>
                                 </tr>
                             </thead>
-
+                            
                             <tbody>
                                 <tr v-for="item in get_cart" :key="item.id">
                                     <td class="h6"><a href="javascript:void(0)" class="text-danger" @click.prevent="removeItem(item.id)">X</a></td>
@@ -109,13 +109,13 @@ export default {
                                             <h6 class="mb-0 ml-3">{{item.brand}}</h6>
                                         </div>
                                     </td>
-                                    <td class="text-center">$ {{item.price}}.00</td>
+                                    <td class="text-center">{{item.price}}₽</td>
                                     <td class="text-center">
                                         <input type="button" value="-" class="minus btn btn-icon btn-soft-primary font-weight-bold" @click.prevent="decrement_count(item.id)">
                                         <input type="text" v-model="item.qt" step="1" min="1" name="quantity"  title="Qty" class="btn btn-icon btn-soft-primary font-weight-bold ml-1">
                                         <input type="button" value="+" class="plus btn btn-icon btn-soft-primary font-weight-bold ml-1"  @click.prevent="increase_count(item.id)">
                                     </td>
-                                    <td class="text-center font-weight-bold">${{item.price}}.00</td>
+                                    <td class="text-center font-weight-bold">{{item.price}}₽</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -129,6 +129,7 @@ export default {
                     <a @click.prevent="DELETE_TO_CART" class="btn btn-danger">Очистить корзину</a>
                     
                     
+                    
                 </div>
                 <div class="col-lg-4 col-md-6 ml-auto mt-4 pt-2">
                     <div class="table-responsive bg-white rounded shadow">
@@ -140,7 +141,7 @@ export default {
                                 </tr>
                                 <tr>
                                     <td class="h6">Итого:</td>
-                                    <td class="text-center font-weight-bold">{{get_Total}}</td>
+                                    <td class="text-center font-weight-bold">{{get_Total}}₽</td>
                                 </tr>
                                 
                                 <!-- <tr>
@@ -155,7 +156,7 @@ export default {
                         </table>
                     </div>
                     <div class="mt-4 pt-2 text-right">
-                        <router-link to="/shop-checkouts" class="btn btn-primary">Proceed to checkout</router-link>
+                        <router-link to="/shop-checkouts" class="btn btn-primary">Оформление заказа</router-link>
                     </div>
                 </div>
             </div>

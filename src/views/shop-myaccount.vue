@@ -24,7 +24,8 @@ import {mapActions, mapGetters} from 'vuex';
  */
 export default {
   data() {
-    return {};
+    return {
+    };
   },
   components: {
     Navbar,
@@ -45,7 +46,7 @@ export default {
     UserCheckIcon
   },
   computed:{
-    ...mapGetters(['info'])
+    ...mapGetters(['info', 'take_order']),
   },
   async mounted() {
     // if (!Object.keys(this.info).length){
@@ -55,12 +56,14 @@ export default {
     // if (!Object.keys(this.$store.getters.info).length){
     //       await this.$store.dispatch('fetchInfo')
     //   }
+
     if(this.info === null){
       this.fetchInfo()
     }
+    this.getOrder()
   },
   methods:{
-    ...mapActions(['fetchInfo', 'logoutFirebase', 'mut_clearInfo']),
+    ...mapActions(['fetchInfo', 'logoutFirebase', 'mut_clearInfo', 'updateUserName', 'updateShippingAdress', 'getOrder']),
     async logout(){
         try{
           await this.logoutFirebase();
@@ -70,7 +73,9 @@ export default {
             console.log('ОШИБКАААА');
         }   
     },
-    
+    clearFileds(){
+      this.NewName = this.NewSurName = this.NewEmail = this.ShippingName = this.ShippingSurName = this.ShippingAdress = this.ShippingPhone = '';
+    }
   },
 };
 </script>
@@ -85,31 +90,27 @@ export default {
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center">
             <div class="page-next-level">
-              <h4 class="title">My Profile / Account</h4>
+              <h4 class="title">Личный кабинет</h4>
               <div class="page-next">
                 <nav aria-label="breadcrumb" class="d-inline-block">
                   <ul class="breadcrumb bg-white rounded shadow mb-0">
                     <li class="breadcrumb-item">
                       <router-link to="/">Landrick</router-link>
                     </li>
-                    <li class="breadcrumb-item">
+                    <!-- <li class="breadcrumb-item">
                       <router-link to="/index-shop">Shop</router-link>
-                    </li>
+                    </li> -->
                     <li class="breadcrumb-item active" aria-current="page">
-                      My Account
+                      Личный кабинет
                     </li>
                   </ul>
                 </nav>
               </div>
             </div>
           </div>
-          <!--end col-->
         </div>
-        <!--end row-->
       </div>
-      <!--end container-->
     </section>
-    <!--end section-->
     <div class="position-relative">
       <div class="shape overflow-hidden text-white">
         <svg
@@ -137,8 +138,9 @@ export default {
               alt=""
             />
             <div class="ml-3">
-              <h6 class="text-muted mb-0">Hello,</h6>
-              <h5 class="mb-0">{{info.name}}</h5>
+              <h6 class="text-muted mb-0">Добро пожаловать, <span style="font-size:1.3rem; color:black;">{{info.name }} {{info.surName}}</span></h6>
+              <br>
+              <a href="#" class="text-danger" @click.prevent="logout">Выйти</a>
             </div>
           </div>
           <div class="">
@@ -162,11 +164,11 @@ export default {
                   </div>
                 </template>
 
-                <h6 class="text-muted">
+                <!-- <h6 class="text-muted">
                   Hello <span class="text-dark">{{info.name}}</span> (not
                   <span class="text-dark">{{info.name}}</span>?
                   <a href="#" class="text-danger" @click.prevent="logout">Выйти</a>)
-                </h6>
+                </h6> -->
 
                 <!-- <h6 class="text-muted mb-0">
                   From your account dashboard you can view your
@@ -186,7 +188,7 @@ export default {
                   <div class="text-left py-1 px-3">
                     <h6 class="mb-0">
                       <i class="uil uil-list-ul h5 align-middle mr-2 mb-0"></i>
-                      Orders
+                      Заказы
                     </h6>
                   </div>
                 </template>
@@ -203,21 +205,22 @@ export default {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">7107</th>
-                        <td>1st November 2020</td>
+                      <tr v-for="item in take_order" :key="item.id">
+                        <!-- <p>item_name - {{item}}</p> -->
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.data}}</td>
                         <td class="text-success">Delivered</td>
                         <td>
-                          $ 320 <span class="text-muted">for 2items</span>
+                          {{item.totalSum}} ₽ <span class="text-muted"> </span>
                         </td>
                         <td>
                           <a href="javascript:void(0)" class="text-primary"
-                            >View <i class="uil uil-arrow-right"></i
+                            >Подробнее <i class="uil uil-arrow-right"></i
                           ></a>
                         </td>
                       </tr>
 
-                      <tr>
+                      <!-- <tr>
                         <th scope="row">8007</th>
                         <td>4th November 2020</td>
                         <td class="text-muted">Processing</td>
@@ -238,8 +241,8 @@ export default {
                           <a href="javascript:void(0)" class="text-primary"
                             >View <i class="uil uil-arrow-right"></i
                           ></a>
-                        </td>
-                      </tr>
+                        </td> 
+                      </tr>-->
                     </tbody>
                   </table>
                 </div>
@@ -287,22 +290,21 @@ export default {
                       <i
                         class="uil uil-map-marker h5 align-middle mr-2 mb-0"
                       ></i>
-                      Addresses
+                      Адрес доставки
                     </h6>
                   </div>
                 </template>
 
                 <h6 class="text-muted mb-0">
-                  The following addresses will be used on the checkout page by
-                  default.
+                  Следующий адрес будут использоваться на странице оформления заказа по умолчанию.
                 </h6>
 
-                <div class="row">
-                  <div class="col-lg-6 mt-4 pt-2">
+                <!-- <div class="row">
+                  <div class="col-lg-12 mt-4 pt-2">
                     <div
                       class="media align-items-center mb-4 justify-content-between"
                     >
-                      <h5 class="mb-0">Billing Address:</h5>
+                      <h5 class="mb-0">Адрес доставки:</h5>
                       <a
                         href="javascript:void(0)"
                         class="text-primary h5 mb-0"
@@ -314,11 +316,10 @@ export default {
                       ></a>
                     </div>
                     <div class="pt-4 border-top">
-                      <p class="h6">Cally Joseph</p>
-                      <p class="h6 text-muted">C/54 Northwest Freeway,</p>
-                      <p class="h6 text-muted">Suite 558,</p>
-                      <p class="h6 text-muted">Houston, USA 485</p>
-                      <p class="h6 text-muted mb-0">+123 897 5468</p>
+                      <p class="h6">{{info.name}} {{info.surName}}</p>
+                      <p class="h6 text-muted">{{info.adress}}</p>
+                      <p class="h6 text-muted">{{info.country}}</p>
+                      <p class="h6 text-muted mb-0">{{info.phone}}</p>
                     </div>
                   </div>
 
@@ -345,31 +346,24 @@ export default {
                       <p class="h6 text-muted mb-0">+123 897 5468</p>
                     </div>
                   </div>
-                </div>
-              </b-tab>
-              <b-tab>
-                <template #title>
-                  <div class="text-left py-1 px-3">
-                    <h6 class="mb-0">
-                      <i class="uil uil-user h5 align-middle mr-2 mb-0"></i>
-                      Account Details
-                    </h6>
-                  </div>
-                </template>
-
-                <form>
+                </div> -->
+                <hr>
+                
+                <form @submit.prevent="updateShippingAdress({ShippingName, ShippingSurName, ShippingAdress, ShippingPhone}), clearFileds()">
+                  
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>First Name</label>
+                        <label>Имя</label>
                         <div class="position-relative">
                           <user-icon class="fea icon-sm icons"></user-icon>
                           <input
+                            :placeholder="info.ShippingName"
                             name="name"
                             id="first-name"
                             type="text"
                             class="form-control pl-5"
-                            value="Cally"
+                            v-model="ShippingName"
                           />
                         </div>
                       </div>
@@ -377,39 +371,59 @@ export default {
                     <!--end col-->
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Last Name</label>
+                        <label>Фамилия</label>
                         <div class="position-relative">
                           <user-check-icon
                             class="fea icon-sm icons"
                           ></user-check-icon>
                           <input
-                            name="name"
+                            :placeholder="info.ShippingSurName"
+                            name="sur_name"
                             id="last-name"
                             type="text"
                             class="form-control pl-5"
-                            value="Joseph"
+                            v-model="ShippingSurName"
                           />
                         </div>
                       </div>
                     </div>
                     <!--end col-->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="form-group">
-                        <label>Your Email</label>
+                        <label>Ваш Адрес</label>
                         <div class="position-relative">
-                          <mail-icon class="fea icon-sm icons"></mail-icon>
+                          <house-icon class="fea icon-sm icons"></house-icon>
                           <input
-                            name="email"
-                            id="email"
-                            type="email"
+                            :placeholder="info.ShippingAdress"
+                            name="text"
+                            id="text"
+                            type="text"
                             class="form-control pl-5"
-                            value="callyjoseph@gmail.com"
+                            v-model="ShippingAdress"
                           />
                         </div>
                       </div>
                     </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Ваш Телефон</label>
+                        <div class="position-relative">
+                          <phone-icon class="fea icon-sm icons"></phone-icon>
+                          <input
+                            :placeholder="info.ShippingPhone"
+                            autocomplete="tel"
+                            name="phone"
+                            id="phone"
+                            type="phone"
+                            class="form-control pl-5"
+                            v-model="ShippingPhone"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!-- :value="info.email" -->
                     <!--end col-->
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                       <div class="form-group">
                         <label>Display Name</label>
                         <div class="position-relative">
@@ -421,33 +435,128 @@ export default {
                             id="display-name"
                             type="text"
                             class="form-control pl-5"
-                            value="cally_joseph"
+                            :value="info.name"
                           />
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <!--end col-->
 
                     <div class="col-lg-12 mt-2 mb-0">
-                      <button class="btn btn-primary">Save Changes</button>
+                      <button class="btn btn-primary" >Сохранить</button>
                     </div>
                     <!--end col-->
                   </div>
                   <!--end row-->
                 </form>
 
-                <h5 class="mt-4">Change password :</h5>
+              </b-tab>
+              <b-tab>
+                <template #title>
+                  <div class="text-left py-1 px-3">
+                    <h6 class="mb-0">
+                      <i class="uil uil-user h5 align-middle mr-2 mb-0"></i>
+                      Детали Аккаунта
+                    </h6>
+                  </div>
+                </template>
+
+                <!-- <form @submit.prevent="lol"> -->
+                <form @submit.prevent="updateUserName({NewName, NewSurName, NewEmail}), clearFileds()">
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Имя</label>
+                        <div class="position-relative">
+                          <user-icon class="fea icon-sm icons"></user-icon>
+                          <input
+                            :placeholder="info.name"
+                            name="name"
+                            id="first-name"
+                            type="text"
+                            class="form-control pl-5"
+                            v-model="NewName"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Фамилия</label>
+                        <div class="position-relative">
+                          <user-check-icon
+                            class="fea icon-sm icons"
+                          ></user-check-icon>
+                          <input
+                            :placeholder="info.surName"
+                            name="sur_name"
+                            id="last-name"
+                            type="text"
+                            class="form-control pl-5"
+                            v-model="NewSurName"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Ваш Email</label>
+                        <div class="position-relative">
+                          <mail-icon class="fea icon-sm icons"></mail-icon>
+                          <input
+                            :placeholder="info.email"
+                            name="email"
+                            id="email"
+                            type="email"
+                            class="form-control pl-5"
+                            v-model="NewEmail"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!-- :value="info.email" -->
+                    <!--end col-->
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Display Name</label>
+                        <div class="position-relative">
+                          <user-check-icon
+                            class="fea icon-sm icons"
+                          ></user-check-icon>
+                          <input
+                            name="name"
+                            id="display-name"
+                            type="text"
+                            class="form-control pl-5"
+                            :value="info.name"
+                          />
+                        </div>
+                      </div>
+                    </div> -->
+                    <!--end col-->
+
+                    <div class="col-lg-12 mt-2 mb-0">
+                      <button class="btn btn-primary" >Сохранить</button>
+                    </div>
+                    <!--end col-->
+                  </div>
+                  <!--end row-->
+                </form>
+
+                <h5 class="mt-4">Изменить пароль :</h5>
                 <form>
                   <div class="row mt-3">
                     <div class="col-lg-12">
                       <div class="form-group">
-                        <label>Old password :</label>
+                        <label>Старый пароль :</label>
                         <div class="position-relative">
                           <key-icon class="fea icon-sm icons"></key-icon>
                           <input
                             type="password"
                             class="form-control pl-5"
-                            placeholder="Old password"
                             required=""
                           />
                         </div>
@@ -457,13 +566,12 @@ export default {
 
                     <div class="col-lg-12">
                       <div class="form-group">
-                        <label>New password :</label>
+                        <label>Новый пароль :</label>
                         <div class="position-relative">
                           <key-icon class="fea icon-sm icons"></key-icon>
                           <input
                             type="password"
                             class="form-control pl-5"
-                            placeholder="New password"
                             required=""
                           />
                         </div>
@@ -473,13 +581,12 @@ export default {
 
                     <div class="col-lg-12">
                       <div class="form-group">
-                        <label>Re-type New password :</label>
+                        <label>Повторите пароль :</label>
                         <div class="position-relative">
                           <key-icon class="fea icon-sm icons"></key-icon>
                           <input
                             type="password"
                             class="form-control pl-5"
-                            placeholder="Re-type New password"
                             required=""
                           />
                         </div>
@@ -488,7 +595,7 @@ export default {
                     <!--end col-->
 
                     <div class="col-lg-12 mt-2 mb-0">
-                      <button class="btn btn-primary">Save Password</button>
+                      <button class="btn btn-primary">Сохранить</button>
                     </div>
                     <!--end col-->
                   </div>
