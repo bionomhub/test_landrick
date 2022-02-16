@@ -2836,18 +2836,6 @@
   "resolved" "https://registry.npmjs.org/atob/-/atob-2.1.2.tgz"
   "version" "2.1.2"
 
-"auth-guard@^1.0.12":
-  "integrity" "sha512-+ZTKDJCiTZmlERrsQ+LeGLB6kGsxgy7qJxO3pdHACTZPo8XSApum6nPJpRa0uyXwBv8pX9kn6hml1ON32yrAqg=="
-  "resolved" "https://registry.npmjs.org/auth-guard/-/auth-guard-1.0.12.tgz"
-  "version" "1.0.12"
-  dependencies:
-    "base-coding" "^1.0.5"
-    "custom-fido-library" "^1.0.7"
-    "final-otp" "^1.0.3"
-    "sendmail" "^1.6.1"
-    "tslib" "^2.1.0"
-    "typescript" "^4.2.3"
-
 "autoprefixer@^9.8.6":
   "integrity" "sha512-XrvP4VVHdRBCdX1S3WXVD8+RyG9qeb1D5Sn1DeLiG2xfSpzellk5k54xbUERJ3M5DggQxes39UGOTP8CFrEGbg=="
   "resolved" "https://registry.npmjs.org/autoprefixer/-/autoprefixer-9.8.6.tgz"
