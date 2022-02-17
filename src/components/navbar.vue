@@ -160,7 +160,7 @@ export default {
 </span>
 <span v-if="info">
           <li class="list-inline-item mb-0" >
-            <router-link to="/shop-myaccount"  class="btn btn-icon btn-soft-primary"><i class="mdi mdi-login mdi-18px icons"></i
+            <router-link to="/shop-myaccount"  class="btn btn-icon btn-soft-primary"><i class="mdi mdi-account mdi-18px icons"></i
             ></router-link>
           </li>
 </span>

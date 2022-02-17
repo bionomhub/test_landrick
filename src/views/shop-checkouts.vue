@@ -112,7 +112,8 @@ export default {
                     <div class="rounded shadow-lg p-4">
                         <h5 class="mb-0">Детали заказа :</h5>
 
-                        <form class="mt-4" @submit.prevent="sendOrder({OrderName, OrderSurName, OrderCity, OrderAdress, OrderPhone, dateOrder, get_Total, get_TotalPositions, ordersId, infoName}), pushToHome()">
+                        <!-- <form class="mt-4" @submit.prevent="sendOrder({OrderName, OrderSurName, OrderCity, OrderAdress, OrderPhone, dateOrder, get_Total, get_TotalPositions, ordersId, infoName}), pushToHome()"> -->
+                            <form @submit.prevent >
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group position-relative">
@@ -203,7 +204,7 @@ export default {
                                 </div> -->
                                 <!--end col-->
                             </div>
-                            <button>submin</button>
+                            <!-- <button>submin</button> -->
                             <!--end row-->
                         </form>
                         <!--end form-->
@@ -299,7 +300,7 @@ export default {
                             </ul>
 
                             <div class="mt-4 pt-2">
-                                <button class="btn btn-block btn-primary">Оформить заказ</button>
+                                <button class="btn btn-block btn-primary" @click="sendOrder({OrderName, OrderSurName, OrderCity, OrderAdress, OrderPhone, dateOrder, get_Total, get_TotalPositions, ordersId, infoName}), pushToHome()">Оформить заказ</button>
                             </div>
                         </div>
                     </div>

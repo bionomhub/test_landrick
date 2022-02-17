@@ -74,7 +74,7 @@ export default {
         get_cart : s => s.cart,
         get_TotalPositions : s => s.TotalPositions,
         get_basket_total : s => s.basket_total,
-        get_Total : s => s.Total,
+        get_Total : s => s.Total.toFixed(2),
         
 
     }

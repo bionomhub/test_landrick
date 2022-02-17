@@ -24,7 +24,7 @@ export default {
 
         async logoutFirebase({commit}){
             await firebase.auth().signOut()
-            commit('clearInfo')
+            await commit('clearInfo')
         },
 
         async registerFirebase({dispatch, commit}, {email, password, name}){

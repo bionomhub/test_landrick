@@ -73,6 +73,9 @@ export default {
           <div class="col-lg-12 text-center">
             <div class="page-next-level">
               <h4 class="title">Branded T-Shirts</h4>
+    <div>
+      <router-link to="/shop-product-detail/1">bar</router-link>
+    </div>
               <div class="page-next">
                 <nav aria-label="breadcrumb" class="d-inline-block">
                   <ul class="breadcrumb bg-white rounded shadow mb-0">
@@ -112,6 +115,8 @@ export default {
       </div>
     </div>
     <!-- Hero End -->
+
+    <router-view />
 
     <section class="section">
       <div class="container">

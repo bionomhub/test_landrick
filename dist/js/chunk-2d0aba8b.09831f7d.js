@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0aba8b"],{"15e6":function(t,n,e){"use strict";e.r(n);var u=function(){var t=this,n=t.$createElement,e=t._self._c||n;return e("div",[e("h1",[t._v("Товар номер "+t._s(t.productId))])])},r=[],c={computed:{productId:function(){return+this.$route.params.id}}},o=c,a=e("2877"),d=Object(a["a"])(o,u,r,!1,null,null,null);n["default"]=d.exports}}]);
+//# sourceMappingURL=chunk-2d0aba8b.09831f7d.js.map

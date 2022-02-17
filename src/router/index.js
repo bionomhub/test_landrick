@@ -339,9 +339,16 @@ const routes = [
     component: () => import('../views/shop-grids-2')
   },
   {
-    path: '/shop-product-detail',
+    path: '/shop-product-detail', 
     name: 'shop-product-detail',
-    component: () => import('../views/shop-product-detail')
+    component: () => import('../views/shop-product-detail'),
+    children: [
+      {
+        path: ':id',
+        name: 'ProductsCard',
+        component: () => import('../components/ProductsCard'),
+      },
+    ]
   },
   {
     path: '/shop-cart',
@@ -639,9 +646,10 @@ const routes = [
     component: () => import('../views/test_vuex')
   },
   {
-    path: '/products/:id',
+    path: '/products',
     name: 'productsCard',
-    component: () => import('../components/ProductsCard')
+    component: () => import('../components/ProductsCard'),
+  
   },
 ]
 

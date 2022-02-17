@@ -85,7 +85,7 @@ export default {
 
     <!-- Start -->
     <section class="section">
-        <div class="container" v-if="get_Total">
+        <div class="container" v-if="get_Total > 0">
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive bg-white shadow">
@@ -93,10 +93,10 @@ export default {
                             <thead>
                                 <tr>
                                     <th class="py-3" style="min-width:20px "></th>
-                                    <th class="py-3" style="min-width: 300px;">Product</th>
-                                    <th class="text-center py-3" style="min-width: 160px;">Price</th>
-                                    <th class="text-center py-3" style="min-width: 160px;">Qty</th>
-                                    <th class="text-center py-3" style="min-width: 160px;">Total</th>
+                                    <th class="py-3" style="min-width: 300px;">Товар</th>
+                                    <th class="text-center py-3" style="min-width: 160px;">Цена</th>
+                                    <th class="text-center py-3" style="min-width: 160px;">Количество</th>
+                                    <th class="text-center py-3" style="min-width: 160px;">Итого</th>
                                 </tr>
                             </thead>
                             

@@ -67,8 +67,8 @@ export default {
     async logout(){
         try{
           await this.logoutFirebase();
-          this.mut_clearInfo;
-          this.$router.push('/auth-login?message=logout');
+          await this.mut_clearInfo;
+          await this.$router.push('/auth-login?message=logout');
         } catch (e){
             console.log('ОШИБКАААА');
         }   

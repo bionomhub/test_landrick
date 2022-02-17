@@ -29,24 +29,57 @@ export default {
         },
         click_product({commit}, click_product){
             commit('push_id_product', click_product)
-        }
+        },
+        // act_categories({commit}){
+        //     commit('set_categories')
+        // }
     },
     state: {
         // products_fb:[],
         // products: [],
-        products_all: {},
+        products_all: [],
         click_product_id: {},
+        category: [],
     },
     mutations: {
         // SET_PRODUCTS_TO_STATE: (state, products) => {
         //     state.products = products
         // },
         set_productions(state, products_fb){
-            state.products_all = products_fb
+            state.products_all = products_fb;
+
+           
+
+            // let categories_product
+            // for (categories_product of products_fb.get('category')){
+            //     state.category.push(categories_product)
+            //   }
+            //   const newArrayCat = new Set(state.category);
+            //   state.category = Array.from(newArrayCat);
+            // state.category = newArrayCat
+
+            // let stateItem = { ...item };
+            // state.cart[item.id] = stateItem;
+
+
+            for (categories_product of products_fb.get('category')){
+                state.category.push(categories_product)
+              }
+              const newArrayCat = new Set(state.category);
+              state.category = Array.from(newArrayCat);
+
         },
         push_id_product(state, click_product){
             state.click_product_id = click_product
-        }
+        },
+        // set_categories(state){
+            // for (categories_product of state.products_all.get('category')){
+        //         state.category.push(categories_product)
+                // state.category += categories_product
+            //   }
+            //   const newArrayCat = new Set(state.category);
+            //   state.category = Array.from(newArrayCat);
+        // }
     },
     getters: {
         // PRODUCTS(state) {
@@ -57,9 +90,30 @@ export default {
         },
         get_click_product_id(state){
             return  state.click_product_id 
-            
+        },
+        get_categories(state){
+            return state.category
         }
         
 
     }
 }
+
+
+// const array = [1, 2, 1, 4, 6, 6, 7, 4];
+// const newArray = new Set(array);
+// // alert(Array.from(new Set(array)));
+
+
+// 
+// const newArray = new Set(products_fb);
+// state.category = Array.from(newArray);
+
+
+// map.get(key)
+// map.keys('category')
+
+// for (let vegetable of recipeMap.keys()) {
+//     alert(vegetable); // огурец, помидор, лук
+// }
+

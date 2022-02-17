@@ -10,6 +10,7 @@ import Navbar from "@/components/navbar";
 import Switcher from "@/components/switcher";
 import Footer from "@/components/footer";
 import Products from "@/components/products";
+import { mapGetters, mapActions } from 'vuex';
 
 /**
  * Shop-products component
@@ -27,6 +28,16 @@ export default {
         EyeIcon,
         ShoppingCartIcon,
         Products
+    },
+    computed:{
+        ...mapGetters(['get_categories'])
+    },
+    methods:{
+        ...mapActions(['act_categories'])
+    },
+    mounted(){
+        // this.act_categories()
+        console.log(this.get_categories)
     }
 }
 </script>
@@ -96,7 +107,10 @@ export default {
                             <!-- CATAGORIES -->
                             <div class="widget mt-4 pt-2">
                                 <h4 class="widget-title">Catagories</h4>
-                                <ul class="list-unstyled mt-4 mb-0 blog-categories">
+                                <ul v-for="item in get_categories" :key="item">
+                                    <li>{{item}}</li>
+                                </ul>
+                                <!-- <ul class="list-unstyled mt-4 mb-0 blog-categories">
                                     <li><a href="javascript:void(0)">Men</a></li>
                                     <li><a href="javascript:void(0)">Women</a></li>
                                     <li><a href="javascript:void(0)">Electronics</a></li>
@@ -106,7 +120,7 @@ export default {
                                     <li><a href="javascript:void(0)">Sports</a></li>
                                     <li><a href="javascript:void(0)">Toys</a></li>
                                     <li><a href="javascript:void(0)">Gift Corners</a></li>
-                                </ul>
+                                </ul> -->
                             </div>
                             <!-- CATAGORIES -->
 
