@@ -424,7 +424,7 @@ export default {
                     </tbody>
                   </table>
                 </div>
-                <button v-if="get_wishlist[1]" @click="DELETE_TO_WISHLIST" class="btn btn-danger" style="position:absolute; bottom:10px;">Очистить список</button>
+                <button v-if="(Object.keys(get_wishlist).length)" @click="DELETE_TO_WISHLIST" class="btn btn-danger" style="position:absolute; bottom:10px;">Очистить список</button>
                 <p v-else class="d-flex justify-content-center">Вы ничего не добавили в избранное</p>
               </b-tab>
 
