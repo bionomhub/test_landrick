@@ -338,17 +338,22 @@ const routes = [
     name: 'shop-grids-2',
     component: () => import('../views/shop-grids-2')
   },
+  // {
+  //   path: '/shop-product-detail', 
+  //   name: 'shop-product-detail',
+  //   component: () => import('../views/shop-product-detail'),
+  //   children: [
+  //     {
+  //       path: ':id',
+  //       name: 'id',
+  //       component: () => import('../components/ProductsCard'),
+  //     },
+  //   ]
+  // },
   {
-    path: '/shop-product-detail', 
-    name: 'shop-product-detail',
+    path: '/shop-product-detail/:id', 
+    // name: 'shop-product-detail',
     component: () => import('../views/shop-product-detail'),
-    children: [
-      {
-        path: ':id',
-        name: 'id',
-        component: () => import('../components/ProductsCard'),
-      },
-    ]
   },
   {
     path: '/shop-cart',

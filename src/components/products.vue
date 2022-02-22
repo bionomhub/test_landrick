@@ -24,11 +24,12 @@
       </div>
 
     </div>
+
     <div class="row">
       <div class="col-lg-4 col-12 mt-4 pt-2 offices" v-for="(product, index) in lists" :key="index">
-        <div class="card shop-list border-0 position-relative overflow-hidden" @click.prevent="click_product(product)">
+        <div class="card shop-list border-0 position-relative overflow-hidden" >
           <div class="shop-image position-relative overflow-hidden rounded shadow">
-            <router-link to='/shop-product-detail'><img :src="product.image" class="img-fluid_" alt="">
+            <router-link :to='`/shop-product-detail/${product.id}`'><img :src="product.image" class="img-fluid_" alt="">
             </router-link>
             <ul class="list-unstyled shop-icons">
               <li><a class="btn btn-icon btn-pills btn-soft-danger" @click.prevent="ADD_TO_WISHLIST(product)">

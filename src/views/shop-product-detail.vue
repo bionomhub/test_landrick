@@ -51,12 +51,15 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['get_click_product_id']),
+    ...mapGetters(['get_click_product_id', 'get_products']),
       productId () {
           return +this.$route.params.id;
       },
       countval_product(){
         return this.countval;
+      },
+      product_detales(){
+        return this.get_products[this.productId - 1]
       }
       
   }
@@ -73,9 +76,6 @@ export default {
           <div class="col-lg-12 text-center">
             <div class="page-next-level">
               <h4 class="title">Branded T-Shirts</h4>
-    <div>
-      <router-link to="/shop-product-detail/1">bar</router-link>
-    </div>
               <div class="page-next">
                 <nav aria-label="breadcrumb" class="d-inline-block">
                   <ul class="breadcrumb bg-white rounded shadow mb-0">
@@ -133,42 +133,42 @@ export default {
             >
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid rounded"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid rounded"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid rounded"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid rounded"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid rounded"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid rounded"
                   alt=""
                 />
@@ -185,42 +185,42 @@ export default {
             >
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid"
                   alt=""
                 />
               </div>
               <div>
                 <img
-                  :src="get_click_product_id.image"
+                  :src="product_detales.image"
                   class="img-fluid"
                   alt=""
                 />
@@ -231,9 +231,9 @@ export default {
 
           <div class="col-md-7 mt-4 mt-sm-0 pt-2 pt-sm-0">
             <div class="section-title ml-md-4">
-              <h4 class="title">{{get_click_product_id.title}}</h4>
+              <h4 class="title">{{product_detales.title}}</h4>
               <h5 class="text-muted">
-                {{get_click_product_id.price}} <del class="text-danger ml-2">{{get_click_product_id.price}}</del>
+                {{product_detales.price}} <del class="text-danger ml-2">{{product_detales.price}}</del>
               </h5>
               <ul class="list-unstyled text-warning h5 mb-0">
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
@@ -245,7 +245,7 @@ export default {
 
               <h5 class="mt-4 py-2">Overview :</h5>
               <p class="text-muted">
-                {{get_click_product_id.description}}
+                {{product_detales.description}}
               </p>
 
               <ul class="list-unstyled text-muted">
@@ -372,7 +372,7 @@ export default {
                 </template>
 
                 <p class="text-muted mb-0">
-                 {{get_click_product_id.description}}
+                 {{product_detales.description}}
                 </p>
               </b-tab>
               <b-tab title-item-class="m-1">
