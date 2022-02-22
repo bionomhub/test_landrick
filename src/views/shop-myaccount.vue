@@ -10,7 +10,7 @@ import {
   SettingsIcon,
   MapPinIcon,
   UserIcon,
-  UserCheckIcon
+  UserCheckIcon,
 } from "vue-feather-icons";
 import { Carousel, Slide } from "vue-carousel";
 
@@ -46,7 +46,7 @@ export default {
     UserCheckIcon
   },
   computed:{
-    ...mapGetters(['info', 'take_order']),
+    ...mapGetters(['info', 'take_order', 'get_wishlist']),
   },
   async mounted() {
     // if (!Object.keys(this.info).length){
@@ -63,7 +63,7 @@ export default {
     this.getOrder()
   },
   methods:{
-    ...mapActions(['fetchInfo', 'logoutFirebase', 'mut_clearInfo', 'updateUserName', 'updateShippingAdress', 'getOrder']),
+    ...mapActions(['fetchInfo', 'logoutFirebase', 'mut_clearInfo', 'updateUserName', 'updateShippingAdress', 'getOrder', 'ADD_TO_CART', 'DELETE_TO_WISHLIST']),
     async logout(){
         try{
           await this.logoutFirebase();
@@ -152,7 +152,7 @@ export default {
               nav-class="bg-white rounded mt-4 p-3 mb-0"
               content-class="col-md-8 col-12 mt-4 pt-2 border"
             >
-              <b-tab active>
+              <!-- <b-tab active>
                 <template #title>
                   <div class="text-left py-1 px-3">
                     <h6 class="mb-0">
@@ -181,8 +181,161 @@ export default {
                   <a href="javascript:void(0)" class="text-danger"
                     >edit your password and account details</a
                   >.
-                </h6> -->
+                </h6> 
+              </b-tab> -->
+
+              <b-tab>
+                <template #title>
+                  <div class="text-left py-1 px-3">
+                    <h6 class="mb-0">
+                      <i class="uil uil-user h5 align-middle mr-2 mb-0"></i>
+                      Детали Аккаунта
+                    </h6>
+                  </div>
+                </template>
+
+                <!-- <form @submit.prevent="lol"> -->
+                <form @submit.prevent="updateUserName({NewName, NewSurName, NewEmail}), clearFileds()">
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Имя</label>
+                        <div class="position-relative">
+                          <user-icon class="fea icon-sm icons"></user-icon>
+                          <input
+                            :placeholder="info.name"
+                            name="name"
+                            id="first-name"
+                            type="text"
+                            class="form-control pl-5"
+                            v-model="NewName"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Фамилия</label>
+                        <div class="position-relative">
+                          <user-check-icon
+                            class="fea icon-sm icons"
+                          ></user-check-icon>
+                          <input
+                            :placeholder="info.surName"
+                            name="sur_name"
+                            id="last-name"
+                            type="text"
+                            class="form-control pl-5"
+                            v-model="NewSurName"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Ваш Email</label>
+                        <div class="position-relative">
+                          <mail-icon class="fea icon-sm icons"></mail-icon>
+                          <input
+                            :placeholder="info.email"
+                            name="email"
+                            id="email"
+                            type="email"
+                            class="form-control pl-5"
+                            v-model="NewEmail"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!-- :value="info.email" -->
+                    <!--end col-->
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Display Name</label>
+                        <div class="position-relative">
+                          <user-check-icon
+                            class="fea icon-sm icons"
+                          ></user-check-icon>
+                          <input
+                            name="name"
+                            id="display-name"
+                            type="text"
+                            class="form-control pl-5"
+                            :value="info.name"
+                          />
+                        </div>
+                      </div>
+                    </div> -->
+                    <!--end col-->
+
+                    <div class="col-lg-12 mt-2 mb-0">
+                      <button class="btn btn-primary" >Сохранить</button>
+                    </div>
+                    <!--end col-->
+                  </div>
+                  <!--end row-->
+                </form>
+
+                <h5 class="mt-4">Изменить пароль :</h5>
+                <form>
+                  <div class="row mt-3">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label>Старый пароль :</label>
+                        <div class="position-relative">
+                          <key-icon class="fea icon-sm icons"></key-icon>
+                          <input
+                            type="password"
+                            class="form-control pl-5"
+                            required=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label>Новый пароль :</label>
+                        <div class="position-relative">
+                          <key-icon class="fea icon-sm icons"></key-icon>
+                          <input
+                            type="password"
+                            class="form-control pl-5"
+                            required=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label>Повторите пароль :</label>
+                        <div class="position-relative">
+                          <key-icon class="fea icon-sm icons"></key-icon>
+                          <input
+                            type="password"
+                            class="form-control pl-5"
+                            required=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-lg-12 mt-2 mb-0">
+                      <button class="btn btn-primary">Сохранить</button>
+                    </div>
+                    <!--end col-->
+                  </div>
+                  <!--end row-->
+                </form>
               </b-tab>
+              
               <b-tab title-link-class="border-top">
                 <template #title>
                   <div class="text-left py-1 px-3">
@@ -247,7 +400,32 @@ export default {
                   </table>
                 </div>
               </b-tab>
+
               <b-tab title-link-class="border-top">
+                <template #title>
+                  <div class="text-left py-1 px-3">
+                    <h6 class="mb-0">
+                      <i class="uil uil-heart h5 align-middle mr-2 mb-0"></i>
+                      Избранное
+                    </h6>
+                  </div>
+                </template>
+
+                <div class="table-responsive bg-white shadow rounded" style="margin-bottom: 4rem !important;">
+                  <table class="table mb-0 table-center table-nowrap">
+                    <tbody>
+                      <tr v-for="item in get_wishlist" :key="item.id">
+                        <td><img :src="item.image" style="width:80px;" alt=""> </td>
+                        <td><p style="white-space: break-spaces !important;">{{item.title}}</p></td>
+                        <td><button class="btn btn-light" @click="ADD_TO_CART(item)">В корзину</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button v-if="get_wishlist" @click="DELETE_TO_WISHLIST" class="btn btn-danger" style="position:absolute; bottom:10px;">Очистить список</button>
+              </b-tab>
+
+              <!-- <b-tab title-link-class="border-top">
                 <template #title>
                   <div class="text-left py-1 px-3">
                     <h6 class="mb-0">
@@ -282,7 +460,7 @@ export default {
                     </tbody>
                   </table>
                 </div>
-              </b-tab>
+              </b-tab> -->
               <b-tab title-link-class="border-top">
                 <template #title>
                   <div class="text-left py-1 px-3">
@@ -451,159 +629,9 @@ export default {
                 </form>
 
               </b-tab>
-              <b-tab>
-                <template #title>
-                  <div class="text-left py-1 px-3">
-                    <h6 class="mb-0">
-                      <i class="uil uil-user h5 align-middle mr-2 mb-0"></i>
-                      Детали Аккаунта
-                    </h6>
-                  </div>
-                </template>
+              
 
-                <!-- <form @submit.prevent="lol"> -->
-                <form @submit.prevent="updateUserName({NewName, NewSurName, NewEmail}), clearFileds()">
-                  
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Имя</label>
-                        <div class="position-relative">
-                          <user-icon class="fea icon-sm icons"></user-icon>
-                          <input
-                            :placeholder="info.name"
-                            name="name"
-                            id="first-name"
-                            type="text"
-                            class="form-control pl-5"
-                            v-model="NewName"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <!--end col-->
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Фамилия</label>
-                        <div class="position-relative">
-                          <user-check-icon
-                            class="fea icon-sm icons"
-                          ></user-check-icon>
-                          <input
-                            :placeholder="info.surName"
-                            name="sur_name"
-                            id="last-name"
-                            type="text"
-                            class="form-control pl-5"
-                            v-model="NewSurName"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <!--end col-->
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Ваш Email</label>
-                        <div class="position-relative">
-                          <mail-icon class="fea icon-sm icons"></mail-icon>
-                          <input
-                            :placeholder="info.email"
-                            name="email"
-                            id="email"
-                            type="email"
-                            class="form-control pl-5"
-                            v-model="NewEmail"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <!-- :value="info.email" -->
-                    <!--end col-->
-                    <!-- <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Display Name</label>
-                        <div class="position-relative">
-                          <user-check-icon
-                            class="fea icon-sm icons"
-                          ></user-check-icon>
-                          <input
-                            name="name"
-                            id="display-name"
-                            type="text"
-                            class="form-control pl-5"
-                            :value="info.name"
-                          />
-                        </div>
-                      </div>
-                    </div> -->
-                    <!--end col-->
-
-                    <div class="col-lg-12 mt-2 mb-0">
-                      <button class="btn btn-primary" >Сохранить</button>
-                    </div>
-                    <!--end col-->
-                  </div>
-                  <!--end row-->
-                </form>
-
-                <h5 class="mt-4">Изменить пароль :</h5>
-                <form>
-                  <div class="row mt-3">
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <label>Старый пароль :</label>
-                        <div class="position-relative">
-                          <key-icon class="fea icon-sm icons"></key-icon>
-                          <input
-                            type="password"
-                            class="form-control pl-5"
-                            required=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <!--end col-->
-
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <label>Новый пароль :</label>
-                        <div class="position-relative">
-                          <key-icon class="fea icon-sm icons"></key-icon>
-                          <input
-                            type="password"
-                            class="form-control pl-5"
-                            required=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <!--end col-->
-
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <label>Повторите пароль :</label>
-                        <div class="position-relative">
-                          <key-icon class="fea icon-sm icons"></key-icon>
-                          <input
-                            type="password"
-                            class="form-control pl-5"
-                            required=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <!--end col-->
-
-                    <div class="col-lg-12 mt-2 mb-0">
-                      <button class="btn btn-primary">Сохранить</button>
-                    </div>
-                    <!--end col-->
-                  </div>
-                  <!--end row-->
-                </form>
-              </b-tab>
-
-              <b-tab>
+              <!-- <b-tab>
                 <template #title>
                   <div class="text-left py-1 px-3">
                     <h6 class="mb-0">
@@ -614,8 +642,8 @@ export default {
                     </h6>
                   </div>
                 </template>
-                <p>I'm a disabled tab!</p></b-tab
-              >
+                <p>I'm a disabled tab!</p>
+              </b-tab> -->
             </b-tabs>
           </div>
           <!--end row-->

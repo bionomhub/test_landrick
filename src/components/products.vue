@@ -31,7 +31,7 @@
             <router-link to='/shop-product-detail'><img :src="product.image" class="img-fluid_" alt="">
             </router-link>
             <ul class="list-unstyled shop-icons">
-              <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger">
+              <li><a class="btn btn-icon btn-pills btn-soft-danger" @click.prevent="ADD_TO_WISHLIST(product)">
                   <heart-icon class="icons"></heart-icon>
                 </a></li>
               <li class="mt-2">
@@ -107,6 +107,12 @@
       //    await this.GET_PRODUCTS_FROM_FB();
       // }
     },
+    components: {
+      ArrowUpIcon,
+      HeartIcon,
+      EyeIcon,
+      ShoppingCartIcon
+    },
 
     data() {
       return {
@@ -116,7 +122,7 @@
       }
     },
     methods: {
-      ...mapActions(['ADD_TO_CART', 'GET_PRODUCTS_FROM_FB', 'click_product', 'push_currentPage']),
+      ...mapActions(['ADD_TO_CART', 'ADD_TO_WISHLIST', 'GET_PRODUCTS_FROM_FB', 'click_product', 'push_currentPage']),
     },
     computed: {
       ...mapGetters(['get_products', 'get_click_product_id', 'get_filters_products_all', 'get_currentPage']),

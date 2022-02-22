@@ -8,6 +8,7 @@ import VuexPersist from 'vuex-persist'
 import product from './modules/product'
 import cart from './modules/cart'
 import orders from './modules/orders'
+import wishlist from './modules/wishlist'
 
 
 const vuexPersist = new VuexPersist({
@@ -37,7 +38,8 @@ export default new Vuex.Store({
     info,
     product,
     cart,
-    orders
+    orders,
+    wishlist
   },
   plugins: [vuexPersist.plugin]
 })
