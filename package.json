@@ -5,9 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy_a": "git add . && git commit -m 'update'",
-    "deploy_b": "git commit -m 'update'",
-    "deploy_c": "git push"
+    "deploy": "git add . && git commit -m 'update' && git push"
   },
   "dependencies": {
     "@vue/cli": "^4.5.15",
