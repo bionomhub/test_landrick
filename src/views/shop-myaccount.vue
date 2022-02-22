@@ -346,7 +346,7 @@ export default {
                   </div>
                 </template>
 
-                <div class="table-responsive bg-white shadow rounded">
+                <div class="table-responsive bg-white shadow rounded" v-if="take_order">
                   <table class="table mb-0 table-center table-nowrap">
                     <thead>
                       <tr>
@@ -372,7 +372,6 @@ export default {
                           ></a>
                         </td>
                       </tr>
-
                       <!-- <tr>
                         <th scope="row">8007</th>
                         <td>4th November 2020</td>
@@ -399,6 +398,9 @@ export default {
                     </tbody>
                   </table>
                 </div>
+                <div v-else class="d-flex justify-content-center align-items-center mt-5">
+                  <p >Список заказов пуст</p>
+                </div>
               </b-tab>
 
               <b-tab title-link-class="border-top">
@@ -422,7 +424,8 @@ export default {
                     </tbody>
                   </table>
                 </div>
-                <button v-if="get_wishlist" @click="DELETE_TO_WISHLIST" class="btn btn-danger" style="position:absolute; bottom:10px;">Очистить список</button>
+                <button v-if="get_wishlist[1]" @click="DELETE_TO_WISHLIST" class="btn btn-danger" style="position:absolute; bottom:10px;">Очистить список</button>
+                <p v-else class="d-flex justify-content-center">Вы ничего не добавили в избранное</p>
               </b-tab>
 
               <!-- <b-tab title-link-class="border-top">
