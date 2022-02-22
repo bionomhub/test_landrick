@@ -28,7 +28,7 @@ import "../public/css/materialdesignicons.min.css";
 import 'swiper/swiper-bundle.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import { BootstrapVue } from 'bootstrap-vue'
+import BootstrapVue from 'bootstrap-vue'
 var VueScrollTo = require('vue-scrollto');
 import Scrollspy from 'vue2-scrollspy';
 import VueYoutube from 'vue-youtube'
@@ -36,13 +36,13 @@ import vueVimeoPlayer from 'vue-vimeo-player'
 import VueMasonry from 'vue-masonry-css'
 
 Vue.use(VueScrollTo, {
-  duration: 3000,
+  duration: 1500,
   easing: "ease"
 })
 
 
 Vue.use(BootstrapVue)
-Vue.use(Scrollspy);
+Vue.use(Scrollspy)
 Vue.use(VueYoutube)
 Vue.use(vueVimeoPlayer)
 Vue.use(VueMasonry)
@@ -54,23 +54,24 @@ Vue.use(messagePlugin)
 
 
 
-let app 
+// let app 
 
-firebase.auth().onAuthStateChanged(() => {
-  if(!app){
-    app = new Vue({
-      router,
-      store,    
-      render: h => h(App)
-    }).$mount('#app')
-  }
-  })
-  this.$store.dispatch('fetchProducts')
-// const app = new Vue({
-//   el: '#app',
-//   // указываем хранилище в опции «store», что обеспечит
-//   // доступ к нему также и во всех дочерних компонентах
-//   router,
-//   store,
-//   render: h => h(App),
-// });
+// firebase.auth().onAuthStateChanged(() => {
+//   if(!app){
+//     app = new Vue({
+//       router,
+//       store,    
+//       render: h => h(App)
+//     }).$mount('#app')
+//   }
+//   })
+//   this.$store.dispatch('fetchProducts')
+
+const app = new Vue({
+  el: '#app',
+  // указываем хранилище в опции «store», что обеспечит
+  // доступ к нему также и во всех дочерних компонентах
+  router,
+  store,
+  render: h => h(App),
+}).$mount('#app');

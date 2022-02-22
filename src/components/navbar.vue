@@ -88,6 +88,9 @@ export default {
     /**
      * Toggle menu
      */
+    ertyuyt(){
+      console.log(info)
+    },
     toggleMenu() {
       this.isCondensed = !this.isCondensed;
       if (this.isCondensed) {
@@ -147,7 +150,14 @@ export default {
         
         </div>
         <ul class="buy-button list-inline mb-0">
-<span v-if="!info"> 
+
+<span v-if="info">
+          <li class="list-inline-item mb-0" >
+            <router-link to="/shop-myaccount"  class="btn btn-icon btn-soft-primary"><i class="mdi mdi-account mdi-18px icons"></i
+            ></router-link>
+          </li>
+</span>
+<span v-else> 
           <li class="list-inline-item mb-0" >
             <router-link to="/auth-signup"  class="btn btn-icon btn-soft-primary"
               ><i class="mdi mdi-account-plus-outline mdi-18px icons"></i
@@ -155,12 +165,6 @@ export default {
           </li>
           <li class="list-inline-item mb-0" >
             <router-link to="/auth-login"  class="btn btn-icon btn-soft-primary"><i class="mdi mdi-login mdi-18px icons"></i
-            ></router-link>
-          </li>
-</span>
-<span v-if="info">
-          <li class="list-inline-item mb-0" >
-            <router-link to="/shop-myaccount"  class="btn btn-icon btn-soft-primary"><i class="mdi mdi-account mdi-18px icons"></i
             ></router-link>
           </li>
 </span>

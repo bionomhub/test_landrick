@@ -345,7 +345,7 @@ const routes = [
     children: [
       {
         path: ':id',
-        name: 'ProductsCard',
+        name: 'id',
         component: () => import('../components/ProductsCard'),
       },
     ]
@@ -656,6 +656,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
+  // history: createWebHashHistory(),
   base: process.env.BASE_URL,
   routes,
   scrollBehavior() {
