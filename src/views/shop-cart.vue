@@ -102,7 +102,7 @@ export default {
                             
                             <tbody>
                                 <tr v-for="item in get_cart" :key="item.id">
-                                    <td class="h6"><a href="javascript:void(0)" class="text-danger" @click.prevent="removeItem(item.id)">X</a></td>
+                                    <td class="h6"><a class="text-danger" @click.prevent="removeItem(item.id)">X</a></td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img :src="item.image" class="img-fluid avatar avatar-small rounded shadow" style="height:auto;" alt="">

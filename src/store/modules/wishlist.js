@@ -23,12 +23,12 @@ export default {
           state.TotalWishlist = 0;
         },
         // удаляет элемент из корзины
-        set_removeItem(state, item){
-          state.TotalWishlist-=state.wishlist[item].qt;
-          console.log(state.wishlist[item].qt);
+        // set_removeItem(state, item){
+        //   state.TotalWishlist-=state.wishlist[item].qt;
+        //   console.log(state.wishlist[item].qt);
          
-          delete state.wishlist[item];
-        },
+        //   delete state.wishlist[item];
+        // },
     },
     actions: {
 
@@ -38,9 +38,9 @@ export default {
         DELETE_TO_WISHLIST({commit}){
             commit('DELETE_FULL_WISHLIST')
         },
-        removeItem({commit}, item){
-          commit('set_removeItem', item)
-        }
+        // removeItem({commit}, item){
+        //   commit('set_removeItem', item)
+        // }
     },
     getters: {
         get_wishlist : s => s.wishlist,
