@@ -103,6 +103,7 @@ export default {
                             <tbody>
                                 <tr v-for="item in get_cart" :key="item.id">
                                     <td class="h6"><a class="text-danger" @click.prevent="removeItem(item.id)">X</a></td>
+                                    <!-- <p>{{item}}</p> -->
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <img :src="item.image" class="img-fluid avatar avatar-small rounded shadow" style="height:auto;" alt="">
@@ -115,7 +116,7 @@ export default {
                                         <input type="text" v-model="item.qt" step="1" min="1" name="quantity"  title="Qty" class="btn btn-icon btn-soft-primary font-weight-bold ml-1">
                                         <input type="button" value="+" class="plus btn btn-icon btn-soft-primary font-weight-bold ml-1"  @click.prevent="increase_count(item.id)">
                                     </td>
-                                    <td class="text-center font-weight-bold">{{item.price}}₽</td>
+                                    <td class="text-center font-weight-bold">{{item.price * item.qt}}₽</td>
                                 </tr>
                             </tbody>
                         </table>

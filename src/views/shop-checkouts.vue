@@ -51,13 +51,21 @@ export default {
             const getOrdersId = Object.keys(this.get_cart);
             this.ordersId = getOrdersId;
             return getOrdersId;
-        }
+        },
+        // check_auth(){
+        //     if(this.info){
+
+        //     }else{
+        //         this.OrderName = this.OrderSurName = this.OrderCity = this.OrderAdress = this.OrderPhone = '1'
+        //     }
+        // }
 
     },
     mounted(){
         this.currentDateTime()
         // console.log(this.infoName())
         this.getIdObjectCart()
+        // this.check_auth()
         
     }
 }

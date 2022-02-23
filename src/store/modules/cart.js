@@ -9,16 +9,34 @@ export default {
     mutations:{
       //добвление товаров в корзину
         UPDATE_CART: (state, item) => {
-            state.TotalPositions++;
+          console.log(item.qt)
+            if(item.qt){
+              console.log('if')
+              state.TotalPositions += item.qt;
+              
+              if (item.id in state.cart) {
+                state.cart[item.id].qt += item.qt;
+                state.Total += state.cart[item.id].price * item.qt;
+              } else {
+                let stateItem = { ...item };
+                stateItem.qt = item.qt;
+                state.cart[item.id] = stateItem;
+                state.Total += state.cart[item.id].price * item.qt;
+              }
+
+            }else{
+              console.log('else')
+              state.TotalPositions++;
             
-            if (item.id in state.cart) {
-              state.cart[item.id].qt++;
-              state.Total += state.cart[item.id].price;
-            } else {
-              let stateItem = { ...item };
-              stateItem.qt = 1;
-              state.cart[item.id] = stateItem;
-              state.Total += state.cart[item.id].price;
+              if (item.id in state.cart) {
+                state.cart[item.id].qt++;
+                state.Total += state.cart[item.id].price;
+              } else {
+                let stateItem = { ...item };
+                stateItem.qt = 1;
+                state.cart[item.id] = stateItem;
+                state.Total += state.cart[item.id].price;
+              }
             }
           },
         // очищаем всю корзину
@@ -51,7 +69,7 @@ export default {
           state.Total -= state.cart[item].price;
           state.TotalPositions--;
          }
-        }
+        },
     },
     actions: {
         increase_count({commit}, item){
@@ -61,14 +79,14 @@ export default {
             commit('decrement', item)
         },
         ADD_TO_CART({commit}, item){
-            commit('UPDATE_CART', item)
+            commit('UPDATE_CART', item )
         },
         DELETE_TO_CART({commit}){
             commit('DELETE_FULL_CART')
         },
         removeItem({commit}, item){
           commit('set_removeItem', item)
-        }
+        },
     },
     getters: {
         get_cart : s => s.cart,

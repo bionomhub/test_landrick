@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       countval: 1,
+      prod: []
     };
   },
   components: {
@@ -41,7 +42,7 @@ export default {
     UserIcon,
   },
   methods: {
-    ...mapActions(['ADD_TO_CART']),
+    ...mapActions(['ADD_TO_CART', 'check_qty']),
     increment() {
       this.countval++;
     },
@@ -53,15 +54,16 @@ export default {
   computed: {
     ...mapGetters(['get_click_product_id', 'get_products']),
       productId () {
-          return +this.$route.params.id;
+          return this.$route.params.id;
       },
       countval_product(){
         return this.countval;
       },
       product_detales(){
-        return this.get_products[this.productId - 1]
-      }
-      
+        let a = this.get_products[this.productId - 1];
+        a.qt = this.countval_product;
+        return a
+      },
   }
 };
 </script>
@@ -342,9 +344,9 @@ export default {
               <!--end row-->
 
               <div class="mt-4 pt-2">
-                <a href="javascript:void(0)" class="btn btn-primary"
+                <!-- <a href="javascript:void(0)" class="btn btn-primary"
                   >Shop Now</a
-                >
+                > -->
                 <!-- <router-link to="/shop-cart" class="btn btn-soft-primary ml-2"
                   >Add to Cart</router-link
                 > -->

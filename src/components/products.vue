@@ -35,11 +35,11 @@
               <li><a class="btn btn-icon btn-pills btn-soft-danger" @click.prevent="ADD_TO_WISHLIST(product)">
                   <heart-icon class="icons"></heart-icon>
                 </a></li>
-              <li class="mt-2">
+              <!-- <li class="mt-2">
                 <router-link to='/shop-product-detail' class="btn btn-icon btn-pills btn-soft-primary">
                   <eye-icon class="icons"></eye-icon>
                 </router-link>
-              </li>
+              </li> -->
               <li class="mt-2">
                 <a class="btn btn-icon btn-pills btn-soft-warning" @click.prevent="ADD_TO_CART(product)">
                   <shopping-cart-icon class="icons"></shopping-cart-icon>
@@ -48,7 +48,7 @@
             </ul>
           </div>
           <div class="card-body content pt-4 p-2">
-            <router-link to='/shop-product-detail' class="text-dark product-name h6">{{product.title}}</router-link>
+            <router-link :to='`/shop-product-detail/${product.id}`' class="text-dark product-name h6">{{product.title}}</router-link>
             <div class="d-flex justify-content-between mt-1">
               <h6 class="text-muted small font-italic mb-0 mt-1">{{product.price}} ₽</h6>
               <ul class="list-unstyled text-warning mb-0" v-for="star in product.rating.rate.toFixed()" :key="star">
@@ -58,7 +58,6 @@
             </div>
           </div>
         </div>
-        <!-- <router-link :to='`/shop-product-detail/${product.id}`'> открыть</router-link> -->
       </div>
       <!-- <div class="list-unstyled text-warning mb-0" v-for="star in lists" :key="star">
         <div class="list-inline-item"><i class="mdi mdi-star"></i></div>
