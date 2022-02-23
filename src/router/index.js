@@ -374,6 +374,7 @@ const routes = [
     path: '/shop-myaccount',
     name: 'shop-myaccount',
     component: () => import('../views/shop-myaccount'),
+    meta: {cantEnter : true}
   },
   {
     path: '/helpcenter-overview',
@@ -668,4 +669,13 @@ const router = new VueRouter({
     return { x: 0, y: 0 }
   }
 })
+
+// router.beforeEach((to, from, next) => {
+//   if(to.meta.cantEnter){
+//     next('/auth-login')
+//   }else{
+//     next()
+//   }
+// })
+
 export default router

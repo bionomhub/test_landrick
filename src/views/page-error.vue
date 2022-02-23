@@ -32,9 +32,10 @@ export default {
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-12 text-center">
                     <img src="images/404.svg" class="img-fluid" alt="">
-                    <div class="text-uppercase mt-4 display-3">Oh ! no</div>
-                    <div class="text-capitalize text-dark mb-4 error-page">Page Not Found</div>
-                    <p class="text-muted para-desc mx-auto">Start working with <span class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate awareness, drive traffic, connect.</p>
+                    <!-- <div class="text-uppercase mt-4 display-3">Oh ! no</div> -->
+                    <div class=" text-dark mb-4 error-page">Страница не найдена</div>
+                    <!-- text-capitalize - стиль текста -->
+                    <!-- <p class="text-muted para-desc mx-auto">Start working with <span class="text-primary font-weight-bold">Landrick</span> that can provide everything you need to generate awareness, drive traffic, connect.</p> -->
                 </div>
                 <!--end col-->
             </div>
@@ -42,8 +43,8 @@ export default {
 
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <router-link to="/" class="btn btn-outline-primary mt-4">Go Back</router-link>
-                    <router-link to="/" class="btn btn-primary mt-4 ml-2">Go To Home</router-link>
+                    <!-- <router-link to="/" class="btn btn-outline-primary mt-4">Go Back</router-link> -->
+                    <router-link to="/" class="btn btn-primary mt-4 ml-2">Домашняя страница</router-link>
                 </div>
                 <!--end col-->
             </div>

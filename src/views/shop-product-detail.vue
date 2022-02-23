@@ -348,7 +348,7 @@ export default {
                 <!-- <router-link to="/shop-cart" class="btn btn-soft-primary ml-2"
                   >Add to Cart</router-link
                 > -->
-                 <a class="btn btn-soft-primary ml-2" @click.prevent="ADD_TO_CART(get_click_product_id)">Добавить в корзину</a>
+                 <a class="btn btn-soft-primary ml-2" @click.prevent="ADD_TO_CART(product_detales)">Добавить в корзину</a>
               </div>
             </div>
           </div>
