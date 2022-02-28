@@ -19,7 +19,7 @@
               <option>Сортировать по price: low to high</option>
               <option>Сортировать по price: high to low</option>
             </select> -->
-            <select >
+            <select class="form-control custom-select">
               <option v-for="col in columns" :key="col" @click="sortBy(col)" >{{col.title}}</option>
             </select>
           </div>
