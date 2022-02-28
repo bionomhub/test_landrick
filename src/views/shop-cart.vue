@@ -35,8 +35,6 @@ export default {
     computed:{
         ...mapGetters([ 'get_cart', 'get_item', 'get_TotalPositions', 'get_basket_total', 'get_Total'])
     },
-
-
 }
 </script>
 
@@ -94,6 +92,7 @@ export default {
                                 <tr>
                                     <th class="py-3" style="min-width:20px "></th>
                                     <th class="py-3" style="min-width: 300px;">Товар</th>
+                                    <th class=" py-3" style="min-width: 160px;">Наименование</th>
                                     <th class="text-center py-3" style="min-width: 160px;">Цена</th>
                                     <th class="text-center py-3" style="min-width: 160px;">Количество</th>
                                     <th class="text-center py-3" style="min-width: 160px;">Итого</th>
@@ -110,6 +109,7 @@ export default {
                                             <h6 class="mb-0 ml-3">{{item.brand}}</h6>
                                         </div>
                                     </td>
+                                    <td class="text">{{item.title}}</td>
                                     <td class="text-center">{{item.price}}₽</td>
                                     <td class="text-center">
                                         <input type="button" value="-" class="minus btn btn-icon btn-soft-primary font-weight-bold" @click.prevent="decrement_count(item.id)">
@@ -125,8 +125,6 @@ export default {
             </div>            
             <div class="row">
                 <div class="col-lg-8 col-md-6 mt-4 pt-2">
-                    <!-- <a href="javascript:void(0)" class="btn btn-primary">Shop More</a>
-                    <a href="javascript:void(0)" class="btn btn-soft-primary ml-2">Update Cart</a> -->
                     <a @click.prevent="DELETE_TO_CART" class="btn btn-danger">Очистить корзину</a>
                     
                     
@@ -144,15 +142,6 @@ export default {
                                     <td class="h6">Итого:</td>
                                     <td class="text-center font-weight-bold">{{get_Total}}₽</td>
                                 </tr>
-                                
-                                <!-- <tr>
-                                    <td class="h6">Taxes</td>
-                                    <td class="text-center font-weight-bold">$ 219</td>
-                                </tr>
-                                <tr class="bg-light">
-                                    <td class="h6">Total</td>
-                                    <td class="text-center font-weight-bold">$ 2409</td>
-                                </tr> -->
                             </tbody>
                         </table>
                     </div>

@@ -7,11 +7,12 @@ export default {
       },
 
     mutations:{
-      //добвление товаров в корзину
+      
+
         UPDATE_CART: (state, item) => {
-          console.log(item.qt)
+          // console.log(item.qt)
             if(item.qt){
-              console.log('if')
+              // console.log('if')
               state.TotalPositions += item.qt;
               
               if (item.id in state.cart) {
@@ -25,7 +26,7 @@ export default {
               }
 
             }else{
-              console.log('else')
+              // console.log('else')
               state.TotalPositions++;
             
               if (item.id in state.cart) {
@@ -38,7 +39,7 @@ export default {
                 state.Total += state.cart[item.id].price;
               }
             }
-          },
+        },
         // очищаем всю корзину
         DELETE_FULL_CART(state){
             state.cart = {};
@@ -79,7 +80,7 @@ export default {
             commit('decrement', item)
         },
         ADD_TO_CART({commit}, item){
-            commit('UPDATE_CART', item )
+          commit('UPDATE_CART', item )
         },
         DELETE_TO_CART({commit}){
             commit('DELETE_FULL_CART')

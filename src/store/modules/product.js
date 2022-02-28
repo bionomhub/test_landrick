@@ -101,8 +101,7 @@ export default {
         },
         mut_low_to_high(state){
             state.filters_products_all
-        }
-
+        },
     },
 
     getters: {

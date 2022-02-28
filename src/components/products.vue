@@ -12,12 +12,15 @@
       <div class="col-lg-3 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
         <div class="form custom-form">
           <div class="form-group mb-0">
-            <select class="form-control custom-select" id="Sortbylist-job">
+            <!-- <select class="form-control custom-select" id="Sortbylist-job">
               <option>Сортировать по latest</option>
               <option>Сортировать по popularity</option>
               <option>Сортировать по rating</option>
               <option>Сортировать по price: low to high</option>
               <option>Сортировать по price: high to low</option>
+            </select> -->
+            <select >
+              <option v-for="col in columns" :key="col" @click="sortBy(col)" >{{col.title}}</option>
             </select>
           </div>
         </div>
@@ -54,7 +57,6 @@
               <ul class="list-unstyled text-warning mb-0" v-for="star in product.rating.rate.toFixed()" :key="star">
                   <li class="list-inline-item"><i class="mdi mdi-star">{{star}}</i></li>
               </ul>
-              <!-- {{product.rating.rate.toFixed()}} -->
             </div>
           </div>
         </div>
@@ -78,8 +80,8 @@
         <!-- <li class="page-item" @click="push_currentPage(count_page+1)" ><span class="page-link">›</span></li> -->
         <li class="page-item" @click="push_currentPage(count_page)" ><span class="page-link">»</span></li>
       </ul>
-
     </div>
+
   </div>
 
 </template>
@@ -97,32 +99,49 @@
     mapGetters
   } from 'vuex'
 
+  import kak2c from './kak2c'
+
   export default {
     async mounted() {
-      // if (!Object.keys(this.get_filters_products_all).length) {
-      //   await this.GET_PRODUCTS_FROM_FB();
-      // }
-      // this.GET_PRODUCTS_FROM_FB()
-      // if((this.get_filters_products_all).length < 1){
-      //    await this.GET_PRODUCTS_FROM_FB();
-      // }
     },
     components: {
       ArrowUpIcon,
       HeartIcon,
       EyeIcon,
-      ShoppingCartIcon
+      ShoppingCartIcon,
+      kak2c
     },
 
     data() {
       return {
-        // currentPage: 1,
         perPage: 9,
         filterCategory: "all",
+        sort: 'id',
+        sortDir:'asc',
+        columns: [
+          { name: 'id',    title: 'id товара', type: 'number' },
+          { name: 'title', title: 'Название',  type: 'string' },
+          { name: 'price', title: 'Цена',      type: 'number', 
+            output: v => v.toLocaleDateString('ru-RU') },
+        ],
+        sort: {
+          column: null,
+          reverse: false,
+        },
+        sortFuncs: {
+          number: (a, b) => a - b,
+          string: (a, b) => a.toLowerCase().localeCompare(b.toLowerCase()),
+        },
       }
     },
     methods: {
       ...mapActions(['ADD_TO_CART', 'ADD_TO_WISHLIST', 'GET_PRODUCTS_FROM_FB', 'click_product', 'push_currentPage']),
+       
+      sortBy(column) {
+        const { sort } = this;
+        this.sort = { column, reverse: (sort.column === column) ^ sort.reverse };
+      },
+
     },
     computed: {
       ...mapGetters(['get_products', 'get_click_product_id', 'get_filters_products_all', 'get_currentPage']),
@@ -132,37 +151,50 @@
       },
 
       lists() {
-        return this.get_filters_products_all.slice(
+        return this.sortedItems.slice(
           (this.get_currentPage - 1) * this.perPage,
           this.get_currentPage * this.perPage
         )
       },
 
       totalRows() {
-        return this.get_filters_products_all.length
+        return this.sortedItems.length
       },
 
       count_page() {
-        return Math.ceil(this.get_filters_products_all.length / this.perPage)
-        // return this.get_filters_products_all.length
+        return Math.ceil(this.sortedItems.length / this.perPage)
       },
       item_start(){
         return ((this.get_currentPage - 1) * this.perPage)+1
       },
       item_finish(){
         let fin_count = (this.get_currentPage) * this.perPage
-        if( fin_count > this.get_filters_products_all.length){
-          return this.get_filters_products_all.length
+        if( fin_count > this.sortedItems.length){
+          return this.sortedItems.length
         }else{
           return (this.get_currentPage) * this.perPage
         }
       },
+
+      sortedItems() {
+        const { get_filters_products_all, sort: { column, reverse } } = this;
+        const key = column?.name;
+        const sort = this.sortFuncs[column?.type];
+
+        return sort
+          ? [...get_filters_products_all].sort((a, b) => sort(a[key], b[key]) * (reverse ? -1 : 1))
+          : get_filters_products_all;
+      },
+
     },
     async mounted() {
       // this.GET_PRODUCTS_FROM_FB()
       if((this.get_filters_products_all).length < 1){
          await this.GET_PRODUCTS_FROM_FB()
-      }
+      } 
+    },
+    created() {
+      this.sortBy(this.get_filters_products_all[this.get_filters_products_all.length - 1]);
     },
   }
 </script>
