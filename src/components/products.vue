@@ -1,5 +1,10 @@
 <template>
   <div>
+    <!-- <input type="text" v-model="search"> -->
+
+    <div class="d-flex mb-5">
+      <input type="text" class="border rounded w-100" style="margin: 0 auto; padding:8px;" placeholder="Поиск..." v-model="search">
+    </div>
 
     <div class="row align-items-center">
       <div class="col-lg-9 col-md-7">
@@ -7,6 +12,8 @@
           <h5 class="mb-0">Показано {{item_start}}–{{item_finish}} из {{get_filters_products_all.length}} товаров</h5>
         </div>
       </div>
+
+      
 
 
       <div class="col-lg-3 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
@@ -43,6 +50,7 @@
                   <eye-icon class="icons"></eye-icon>
                 </router-link>
               </li> -->
+
               <li class="mt-2">
                 <a class="btn btn-icon btn-pills btn-soft-warning" @click.prevent="ADD_TO_CART(product)">
                   <shopping-cart-icon class="icons"></shopping-cart-icon>
@@ -114,6 +122,7 @@
 
     data() {
       return {
+        search:'',
         perPage: 9,
         filterCategory: "all",
         sort: 'id',
@@ -151,26 +160,26 @@
       },
 
       lists() {
-        return this.sortedItems.slice(
+        return this.searchItems.slice(
           (this.get_currentPage - 1) * this.perPage,
           this.get_currentPage * this.perPage
         )
       },
 
       totalRows() {
-        return this.sortedItems.length
+        return this.searchItems.length
       },
 
       count_page() {
-        return Math.ceil(this.sortedItems.length / this.perPage)
+        return Math.ceil(this.searchItems.length / this.perPage)
       },
       item_start(){
         return ((this.get_currentPage - 1) * this.perPage)+1
       },
       item_finish(){
         let fin_count = (this.get_currentPage) * this.perPage
-        if( fin_count > this.sortedItems.length){
-          return this.sortedItems.length
+        if( fin_count > this.searchItems.length){
+          return this.searchItems.length
         }else{
           return (this.get_currentPage) * this.perPage
         }
@@ -184,6 +193,10 @@
         return sort
           ? [...get_filters_products_all].sort((a, b) => sort(a[key], b[key]) * (reverse ? -1 : 1))
           : get_filters_products_all;
+      },
+
+      searchItems() {
+        return this.sortedItems.filter(item => item.title.toLowerCase().indexOf(this.search.toLowerCase()) !== -1)
       },
 
     },

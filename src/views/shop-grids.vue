@@ -39,6 +39,12 @@
         mounted() {
             this.act_categories()
         },
+        data(){
+            return{
+                minPrice: 0,
+                maxPrice: 1000
+            }
+        }
     }
 </script>
 
@@ -91,7 +97,7 @@
                         <div class="card border-0 sidebar sticky-bar">
                             <div class="card-body p-0">
                                 <!-- SEARCH -->
-                                <div class="widget">
+                                <!-- <div class="widget">
                                     <div id="search2" class="widget-search mb-0">
                                         <form role="search" method="get" id="searchform" class="searchform">
                                             <div>
@@ -101,11 +107,11 @@
                                             </div>
                                         </form>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- SEARCH -->
 
                                 <!-- CATAGORIES -->
-                                <div class="widget mt-4 pt-2">
+                                <div class="widget">
                                     <h4 class="widget-title">Категории</h4>
                                   
                                     <ul class="col container-filter list-unstyled categories-filter mb-0 pl-0">
@@ -123,6 +129,15 @@
                                     </ul>
                                 </div>
                                 <!-- CATAGORIES -->
+
+                                <!-- price -->
+
+                                <!-- <div class="range-slider">
+                                    <input type="range" min="0" max="1000" step="10" v-model.number="minPrice">
+                                    <input type="range" min="0" max="1000" step="10" v-model.number="maxPrice">
+                                </div> -->
+
+                                <!-- price -->
 
                                 <!-- color -->
                                 <!-- <div class="widget mt-4 pt-2">
@@ -251,3 +266,24 @@
         <!-- Back to top -->
     </div>
 </template>
+
+<style scoped>
+.range-slider{
+    width: 200px;
+    margin: auto 16px;
+    text-align: center;
+    position: relative;
+    min-height:30px ;
+}
+.range-slider svg, .range-slider input[type=range]{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+ input[type=range]::-webkit-slider-thumb {
+     z-index: 2;
+     position: relative;
+     top: 2px;
+     margin-top: -7px;
+ }
+</style>

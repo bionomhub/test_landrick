@@ -44,9 +44,9 @@ export default {
         // sort({commit}){
         //     commit('')
         // }
-        sort_low_to_high({commit}){
-            commit('mut_low_to_high')
-        }
+        // sort_low_to_high({commit}){
+        //     commit('mut_low_to_high')
+        // }
     },
 
     state: {
@@ -99,9 +99,9 @@ export default {
         set_currentPage(state, item){
             state.currentPage = item
         },
-        mut_low_to_high(state){
-            state.filters_products_all
-        },
+        // mut_low_to_high(state){
+        //     state.filters_products_all
+        // },
     },
 
     getters: {
