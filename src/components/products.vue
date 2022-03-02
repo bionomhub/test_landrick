@@ -9,7 +9,8 @@
     <div class="row align-items-center">
       <div class="col-lg-9 col-md-7">
         <div class="section-title">
-          <h5 class="mb-0">Показано {{item_start}}–{{item_finish}} из {{get_filters_products_all.length}} товаров</h5>
+          <!-- <h5 class="mb-0">Показано {{item_start}}–{{item_finish}} из {{get_filters_products_all.length}} товаров</h5> -->
+          <h5 v-if="item_finish" class="mb-0">Показано {{item_start}}–{{item_finish}} из {{searchItems.length}} товаров</h5>
         </div>
       </div>
 
@@ -26,7 +27,8 @@
               <option>Сортировать по price: low to high</option>
               <option>Сортировать по price: high to low</option>
             </select> -->
-            <select class="form-control custom-select">
+            <!-- <label><p>сортировать</p></label> -->
+            <select v-if="item_finish" class="form-control custom-select">
               <option v-for="col in columns" :key="col" @click="sortBy(col)" >{{col.title}}</option>
             </select>
           </div>
@@ -36,6 +38,7 @@
     </div>
 
     <div class="row">
+      <p v-if="!item_finish" class="w-100 text-center">ничего не найдено</p>
       <div class="col-lg-4 col-12 mt-4 pt-2 offices" v-for="(product, index) in lists" :key="index">
         <div class="card shop-list border-0 position-relative overflow-hidden" >
           <div class="shop-image position-relative overflow-hidden rounded shadow">
@@ -136,9 +139,10 @@
         sort: 'id',
         sortDir:'asc',
         columns: [
-          { name: 'id',    title: 'id товара', type: 'number' },
-          { name: 'title', title: 'Название',  type: 'string' },
-          { name: 'price', title: 'Цена',      type: 'number', 
+          { name: '',    title: 'не отсортированно', type: 'number' },
+          { name: 'title', title: 'по названиею',  type: 'string' },
+          // { name: 'rating', title: 'звезды',  type: 'number' },
+          { name: 'price', title: 'по цене',      type: 'number', 
             output: v => v.toLocaleDateString('ru-RU') },
         ],
         sort: {
@@ -182,14 +186,18 @@
         return Math.ceil(this.searchItems.length / this.perPage)
       },
       item_start(){
-        return ((this.get_currentPage - 1) * this.perPage)+1
+        if(this.item_finish){
+          return ((this.get_currentPage - 1) * this.perPage)+1;
+        // }else{
+        //   return ((this.get_currentPage - 1) * this.perPage);
+        }
       },
       item_finish(){
         let fin_count = (this.get_currentPage) * this.perPage
         if( fin_count > this.searchItems.length){
           return this.searchItems.length
         }else{
-          return (this.get_currentPage) * this.perPage
+          return this.get_currentPage * this.perPage
         }
       },
 
