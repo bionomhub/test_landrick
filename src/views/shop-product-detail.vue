@@ -772,12 +772,13 @@ export default {
           <carousel id="client-four" class="owl-carousel owl-theme" dir="ltr" :per-page="3" :loop="true" >
               <Slide v-for="similar_product in get_similar_products" :key="similar_product">
                   <div class="card shop-list border-0 position-relative overflow-hidden m-2">
-                      <div class="shop-image position-relative overflow-hidden rounded shadow">
-                          <router-link :to='`/shop-product-detail/${similar_product.id}`' ><img :src="similar_product.image" class="img-fluid" style="width:80px; "
-                                  alt="" /></router-link>
-                          <router-link :to='`/shop-product-detail/${similar_product.id}`' class="overlay-work">
-                              <img :src="similar_product.image" class="img-fluid" alt="" style="width:80px; " />
+                      <div class="shop-image position-relative overflow-hidden rounded shadow d-flex justify-content-center">
+                          <router-link :to='`/shop-product-detail/${similar_product.id}`' >
+                            <img :src="similar_product.image" class="img-fluid img-fluid_" alt="" />
                           </router-link>
+                          <!-- <router-link :to='`/shop-product-detail/${similar_product.id}`' class="overlay-work">
+                            <img :src="similar_product.image" class="img-fluid img-fluid_" alt=""/>
+                          </router-link> -->
                       </div>
                       <div class="card-body content pt-4 p-2">
                           <router-link :to='`/shop-product-detail/${similar_product.id}`' class="text-dark product-name h6"> {{similar_product.title}}</router-link>
@@ -801,8 +802,8 @@ export default {
           <div class="container">
             <div class="row align-items-center">
               <div class="col-12">
-                <div class="d-flex align-items-center justify-content-between">
-                  <router-link
+                <div class="d-flex align-items-center justify-content-center">
+                  <!-- <router-link
                     tag="a"
                     to="/shop-product-detail"
                     class="text-dark align-items-center"
@@ -832,7 +833,7 @@ export default {
                       style="height: auto"
                       alt=""
                     />
-                  </router-link>
+                  </router-link> -->
 
                   <router-link
                     tag="a"
@@ -856,7 +857,7 @@ export default {
                       <polyline points="9 22 9 12 15 12 15 22"></polyline></svg
                   ></router-link>
 
-                  <router-link
+                  <!-- <router-link
                     tag="a"
                     to="/shop-product-detail"
                     class="text-dark align-items-center"
@@ -886,7 +887,7 @@ export default {
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline></svg
                     ></span>
-                  </router-link>
+                  </router-link> -->
                 </div>
               </div>
               <!--end col-->
@@ -916,3 +917,10 @@ export default {
     <!-- Back to top -->
   </div>
 </template>
+
+<style scoped>
+.img-fluid_ {
+    max-height: 150px;
+    max-width: 120px;
+  }
+</style>
