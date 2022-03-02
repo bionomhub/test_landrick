@@ -253,8 +253,15 @@ export default {
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
               </ul> -->
-               <ul class="list-unstyled text-warning mb-0" v-for="star in product_detales.rating.rate.toFixed()" :key="star">
+               <!-- <ul class="list-unstyled text-warning mb-0" v-for="star in product_detales.rating.rate.toFixed()" :key="star">
                   <li class="list-inline-item"><i class="mdi mdi-star">{{star}}</i></li>
+              </ul> -->
+              <ul class="list-unstyled text-warning h5 mb-0" v-for="star in product_detales.rating.rate.toFixed()" :key="star">
+                <li v-if="star > 0" class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                <li v-if="star > 1" class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                <li v-if="star > 2" class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                <li v-if="star > 3" class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                <li v-if="star > 4" class="list-inline-item"><i class="mdi mdi-star"></i></li>
               </ul>
 
               <h5 class="mt-4 py-2">Overview :</h5>
