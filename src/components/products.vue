@@ -11,6 +11,7 @@
         <div class="section-title">
           <!-- <h5 class="mb-0">Показано {{item_start}}–{{item_finish}} из {{get_filters_products_all.length}} товаров</h5> -->
           <h5 v-if="item_finish" class="mb-0">Показано {{item_start}}–{{item_finish}} из {{searchItems.length}} товаров</h5>
+          {{checkCountPage}}
         </div>
       </div>
 
@@ -100,6 +101,7 @@
         <li class="page-item" @click="push_currentPage(count_page)" ><span class="page-link">»</span></li>
       </ul>
     </div>
+
 
   </div>
 
@@ -213,6 +215,11 @@
 
       searchItems() {
         return this.sortedItems.filter(item => item.title.toLowerCase().indexOf(this.search.toLowerCase()) !== -1)
+      },
+      checkCountPage(){
+        if(this.item_finish<this.item_start){
+         this.push_currentPage(1)
+        }
       },
 
     },
