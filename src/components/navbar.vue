@@ -152,6 +152,7 @@ export default {
         <ul class="buy-button list-inline mb-0">
 
 <span v-if="info">
+<!-- <span v-if="info.name"> -->
           <li class="list-inline-item mb-0" >
             <router-link to="/shop-myaccount"  class="btn btn-icon btn-soft-primary"><i class="mdi mdi-account mdi-18px icons"></i
             ></router-link>

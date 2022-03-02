@@ -60,6 +60,7 @@
           </div>
           <div class="card-body content pt-4 p-2">
             <router-link :to='`/shop-product-detail/${product.id}`' class="text-dark product-name h6">{{product.title}}</router-link>
+            <!-- <p @click="click_product(product)">{{product.title}}</p> -->
             <div class="d-flex justify-content-between mt-1">
               <h6 class="text-muted small font-italic mb-0 mt-1">{{product.price}} ₽</h6>
               <ul class="list-unstyled text-warning mb-0" v-for="star in product.rating.rate.toFixed()" :key="star">
@@ -144,7 +145,7 @@
       }
     },
     methods: {
-      ...mapActions(['ADD_TO_CART', 'ADD_TO_WISHLIST', 'GET_PRODUCTS_FROM_FB', 'click_product', 'push_currentPage']),
+      ...mapActions(['ADD_TO_CART', 'ADD_TO_WISHLIST', 'GET_PRODUCTS_FROM_FB', 'push_currentPage', 'act_push_prod']),
        
       sortBy(column) {
         const { sort } = this;
@@ -153,7 +154,7 @@
 
     },
     computed: {
-      ...mapGetters(['get_products', 'get_click_product_id', 'get_filters_products_all', 'get_currentPage']),
+      ...mapGetters(['get_products', 'get_filters_products_all', 'get_currentPage']),
 
       linkOpen() {
         return '/shop-product-detail/' + product.id;

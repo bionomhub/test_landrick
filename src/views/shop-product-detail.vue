@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       countval: 1,
-      prod: []
+      prod: [],
     };
   },
   components: {
@@ -42,7 +42,7 @@ export default {
     UserIcon,
   },
   methods: {
-    ...mapActions(['ADD_TO_CART', 'check_qty']),
+    ...mapActions(['GET_PRODUCTS_FROM_FB', 'ADD_TO_CART', 'updateFilter', 'simillarFilter']),
     increment() {
       this.countval++;
     },
@@ -52,7 +52,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['get_click_product_id', 'get_products']),
+    ...mapGetters(['get_products', 'get_filters_products_all', 'get_similar_products']),
       productId () {
           return this.$route.params.id;
       },
@@ -64,14 +64,23 @@ export default {
         a.qt = this.countval_product;
         return a
       },
+      async mounted() {
+      // this.GET_PRODUCTS_FROM_FB()
+        if((this.get_filters_products_all).length < 1){
+          await this.GET_PRODUCTS_FROM_FB()
+        } 
+      },
+  },
+  mounted(){
+    this.simillarFilter(this.product_detales.category)
   }
+
 };
 </script>
 
 <template>
   <div>
     <Navbar :isIcons="true" />
-    <!-- Hero Start -->
     <section class="bg-half bg-light d-table w-100">
       <div class="container">
         <div class="row justify-content-center">
@@ -235,14 +244,17 @@ export default {
             <div class="section-title ml-md-4">
               <h4 class="title">{{product_detales.title}}</h4>
               <h5 class="text-muted">
-                {{product_detales.price}} <del class="text-danger ml-2">{{product_detales.price}}</del>
+                {{product_detales.price}}₽
               </h5>
-              <ul class="list-unstyled text-warning h5 mb-0">
+              <!-- <ul class="list-unstyled text-warning h5 mb-0">
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
                 <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+              </ul> -->
+               <ul class="list-unstyled text-warning mb-0" v-for="star in product_detales.rating.rate.toFixed()" :key="star">
+                  <li class="list-inline-item"><i class="mdi mdi-star">{{star}}</i></li>
               </ul>
 
               <h5 class="mt-4 py-2">Overview :</h5>
@@ -272,7 +284,7 @@ export default {
               </ul>
 
               <div class="row mt-4 pt-2">
-                <div class="col-lg-6 col-12">
+                <!-- <div class="col-lg-6 col-12">
                   <div class="d-flex align-items-center">
                     <h6 class="mb-0">Объем:</h6>
                     <ul class="list-unstyled mb-0 ml-3">
@@ -305,9 +317,8 @@ export default {
                         >
                       </li>
                     </ul>
-                    <!-- <p class="mb-0">мл</p> -->
                   </div>
-                </div>
+                </div> -->
                 <!--end col-->
 
                 <div class="col-lg-6 col-12 mt-4 mt-lg-0">
@@ -745,419 +756,34 @@ export default {
       <div class="container mt-100 mt-60">
         <div class="row">
           <div class="col-12">
-            <h5 class="mb-0">Похожие продукты</h5>
+            <h5 class="mb-0">Похожие товары</h5>
           </div>
           <!--end col-->
 
           <div class="col-12 mt-4">
-            <carousel
-              id="client-four"
-              class="owl-carousel owl-theme"
-              dir="ltr"
-              :per-page="3"
-              :loop="true"
-            >
-              <Slide>
-                <div
-                  class="card shop-list border-0 position-relative overflow-hidden m-2"
-                >
-                  <div
-                    class="shop-image position-relative overflow-hidden rounded shadow"
-                  >
-                    <router-link to="/shop-product-detail"
-                      ><img
-                        src="images/shop/product/s1.jpg"
-                        class="img-fluid"
-                        alt=""
-                    /></router-link>
-                    <router-link to="/shop-product-detail" class="overlay-work">
-                      <img
-                        src="images/shop/product/s-1.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </router-link>
-                    <ul class="list-unstyled shop-icons">
-                      <li>
-                        <a
-                          href="javascript:void(0)"
-                          class="btn btn-icon btn-pills btn-soft-danger"
-                        >
-                          <heart-icon class="icons"></heart-icon>
-                        </a>
-                      </li>
-                      <li class="mt-2">
-                        <a
-                          href="shop-product-detail"
-                          class="btn btn-icon btn-pills btn-soft-primary"
-                        >
-                          <eye-icon class="icons"></eye-icon>
-                        </a>
-                      </li>
-                      <li class="mt-2">
-                        <router-link
-                          to="/shop-cart"
-                          class="btn btn-icon btn-pills btn-soft-warning"
-                        >
-                          <shopping-cart-icon
-                            class="icons"
-                          ></shopping-cart-icon>
-                        </router-link>
-                      </li>
-                    </ul>
+
+          <carousel id="client-four" class="owl-carousel owl-theme" dir="ltr" :per-page="3" :loop="true" >
+              <Slide v-for="similar_product in get_similar_products" :key="similar_product">
+                  <div class="card shop-list border-0 position-relative overflow-hidden m-2">
+                      <div class="shop-image position-relative overflow-hidden rounded shadow">
+                          <router-link :to='`/shop-product-detail/${similar_product.id}`' ><img :src="similar_product.image" class="img-fluid" style="width:80px; "
+                                  alt="" /></router-link>
+                          <router-link :to='`/shop-product-detail/${similar_product.id}`' class="overlay-work">
+                              <img :src="similar_product.image" class="img-fluid" alt="" style="width:80px; " />
+                          </router-link>
+                      </div>
+                      <div class="card-body content pt-4 p-2">
+                          <router-link :to='`/shop-product-detail/${similar_product.id}`' class="text-dark product-name h6"> {{similar_product.title}}</router-link>
+                          <div class="d-flex justify-content-between mt-1">
+                              <h6 class="text-muted small font-italic mb-0 mt-1">
+                                  {{similar_product.price}}₽
+                              </h6>
+                          </div>
+                      </div>
                   </div>
-                  <div class="card-body content pt-4 p-2">
-                    <router-link
-                      to="/shop-product-detail"
-                      class="text-dark product-name h6"
-                      >Branded T-Shirt</router-link
-                    >
-                    <div class="d-flex justify-content-between mt-1">
-                      <h6 class="text-muted small font-italic mb-0 mt-1">
-                        $16.00 <del class="text-danger ml-2">$21.00</del>
-                      </h6>
-                      <ul class="list-unstyled text-warning mb-0">
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
               </Slide>
-              <Slide>
-                <div
-                  class="card shop-list border-0 position-relative overflow-hidden m-2"
-                >
-                  <div
-                    class="shop-image position-relative overflow-hidden rounded shadow"
-                  >
-                    <router-link to="/shop-product-detail"
-                      ><img
-                        src="images/shop/product/s3.jpg"
-                        class="img-fluid"
-                        alt=""
-                    /></router-link>
-                    <router-link to="/shop-product-detail" class="overlay-work">
-                      <img
-                        src="images/shop/product/s-3.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </router-link>
-                    <ul class="list-unstyled shop-icons">
-                      <li>
-                        <a
-                          href="javascript:void(0)"
-                          class="btn btn-icon btn-pills btn-soft-danger"
-                        >
-                          <heart-icon class="icons"></heart-icon>
-                        </a>
-                      </li>
-                      <li class="mt-2">
-                        <a
-                          href="shop-product-detail"
-                          class="btn btn-icon btn-pills btn-soft-primary"
-                        >
-                          <eye-icon class="icons"></eye-icon>
-                        </a>
-                      </li>
-                      <li class="mt-2">
-                        <router-link
-                          to="/shop-cart"
-                          class="btn btn-icon btn-pills btn-soft-warning"
-                        >
-                          <shopping-cart-icon
-                            class="icons"
-                          ></shopping-cart-icon>
-                        </router-link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="card-body content pt-4 p-2">
-                    <router-link
-                      to="/shop-product-detail"
-                      class="text-dark product-name h6"
-                      >Elegent Watch</router-link
-                    >
-                    <div class="d-flex justify-content-between mt-1">
-                      <h6 class="text-muted small font-italic mb-0 mt-1">
-                        $5.00 <span class="text-success ml-1">30% off</span>
-                      </h6>
-                      <ul class="list-unstyled text-warning mb-0">
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </Slide>
-              <Slide>
-                <div
-                  class="card shop-list border-0 position-relative overflow-hidden m-2"
-                >
-                  <div
-                    class="shop-image position-relative overflow-hidden rounded shadow"
-                  >
-                    <router-link to="/shop-product-detail"
-                      ><img
-                        src="images/shop/product/s6.jpg"
-                        class="img-fluid"
-                        alt=""
-                    /></router-link>
-                    <router-link to="/shop-product-detail" class="overlay-work">
-                      <img
-                        src="images/shop/product/s-6.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </router-link>
-                    <ul class="list-unstyled shop-icons">
-                      <li>
-                        <a
-                          href="javascript:void(0)"
-                          class="btn btn-icon btn-pills btn-soft-danger"
-                        >
-                          <heart-icon class="icons"></heart-icon>
-                        </a>
-                      </li>
-                      <li class="mt-2">
-                        <a
-                          href="shop-product-detail"
-                          class="btn btn-icon btn-pills btn-soft-primary"
-                        >
-                          <eye-icon class="icons"></eye-icon>
-                        </a>
-                      </li>
-                      <li class="mt-2">
-                        <router-link
-                          to="/shop-cart"
-                          class="btn btn-icon btn-pills btn-soft-warning"
-                        >
-                          <shopping-cart-icon
-                            class="icons"
-                          ></shopping-cart-icon>
-                        </router-link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="card-body content pt-4 p-2">
-                    <router-link
-                      to="/shop-product-detail"
-                      class="text-dark product-name h6"
-                      >Elegent Mug</router-link
-                    >
-                    <div class="d-flex justify-content-between mt-1">
-                      <h6 class="text-muted small font-italic mb-0 mt-1">
-                        $4.50 <del class="text-danger ml-2">$6.50</del>
-                      </h6>
-                      <ul class="list-unstyled text-warning mb-0">
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </Slide>
-              <Slide>
-                <div
-                  class="card shop-list border-0 position-relative overflow-hidden m-2"
-                >
-                  <div
-                    class="shop-image position-relative overflow-hidden rounded shadow"
-                  >
-                    <router-link to="/shop-product-detail"
-                      ><img
-                        src="images/shop/product/s8.jpg"
-                        class="img-fluid"
-                        alt=""
-                    /></router-link>
-                    <router-link to="/shop-product-detail" class="overlay-work">
-                      <img
-                        src="images/shop/product/s-8.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </router-link>
-                    <ul class="list-unstyled shop-icons">
-                      <li>
-                        <a
-                          href="javascript:void(0)"
-                          class="btn btn-icon btn-pills btn-soft-danger"
-                        >
-                          <heart-icon class="icons"></heart-icon>
-                        </a>
-                      </li>
-                      <li class="mt-2">
-                        <router-link
-                          to="/shop-product-detail"
-                          class="btn btn-icon btn-pills btn-soft-primary"
-                        >
-                          <eye-icon class="icons"></eye-icon>
-                        </router-link>
-                      </li>
-                      <li class="mt-2">
-                        <router-link
-                          to="/shop-cart"
-                          class="btn btn-icon btn-pills btn-soft-warning"
-                        >
-                          <shopping-cart-icon
-                            class="icons"
-                          ></shopping-cart-icon>
-                        </router-link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="card-body content pt-4 p-2">
-                    <router-link
-                      to="/shop-product-detail"
-                      class="text-dark product-name h6"
-                      >Wooden Stools</router-link
-                    >
-                    <div class="d-flex justify-content-between mt-1">
-                      <h6 class="text-muted small font-italic mb-0 mt-1">
-                        $22.00 <del class="text-danger ml-2">$25.00</del>
-                      </h6>
-                      <ul class="list-unstyled text-warning mb-0">
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </Slide>
-              <Slide>
-                <div
-                  class="card shop-list border-0 position-relative overflow-hidden m-2"
-                >
-                  <div
-                    class="shop-image position-relative overflow-hidden rounded shadow"
-                  >
-                    <router-link to="/shop-product-detail"
-                      ><img
-                        src="images/shop/product/s14.jpg"
-                        class="img-fluid"
-                        alt=""
-                    /></router-link>
-                    <router-link to="/shop-product-detail" class="overlay-work">
-                      <img
-                        src="images/shop/product/s-14.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </router-link>
-                    <ul class="list-unstyled shop-icons">
-                      <li>
-                        <a
-                          href="javascript:void(0)"
-                          class="btn btn-icon btn-pills btn-soft-danger"
-                        >
-                          <heart-icon class="icons"></heart-icon>
-                        </a>
-                      </li>
-                      <li class="mt-2">
-                        <router-link
-                          to="/shop-product-detail"
-                          class="btn btn-icon btn-pills btn-soft-primary"
-                        >
-                          <eye-icon class="icons"></eye-icon>
-                        </router-link>
-                      </li>
-                      <li class="mt-2">
-                        <router-link
-                          to="/shop-cart"
-                          class="btn btn-icon btn-pills btn-soft-warning"
-                        >
-                          <shopping-cart-icon
-                            class="icons"
-                          ></shopping-cart-icon>
-                        </router-link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="card-body content pt-4 p-2">
-                    <router-link
-                      to="/shop-product-detail"
-                      class="text-dark product-name h6"
-                      >Women Block Heels</router-link
-                    >
-                    <div class="d-flex justify-content-between mt-1">
-                      <h6 class="text-muted small font-italic mb-0 mt-1">
-                        $21.00 <del class="text-danger ml-2">$25.00</del>
-                      </h6>
-                      <ul class="list-unstyled text-warning mb-0">
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="mdi mdi-star"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </Slide>
-            </carousel>
+          </carousel>
+           
           </div>
           <!--end col-->
         </div>

@@ -678,11 +678,10 @@ const router = new VueRouter({
 //   }
 // })
 
+
+
+
 export default router
-// {
-  // computed:{
-  //   ...mapGetters(['info', 'get_TotalPositions'])
-  // },
-// }
+
 
 
