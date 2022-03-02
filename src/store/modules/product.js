@@ -85,7 +85,8 @@ export default {
             
         },
         set_simillarFilter(state, item) {
-                state.simillar_prod = state.products_all.filter((x) => x.category === item);
+                let filter_cat = state.products_all.filter((x) => x.category === item.category);
+                state.simillar_prod = filter_cat.filter((x) => x.id !== item.id);
         },
 
         set_currentPage(state, item){

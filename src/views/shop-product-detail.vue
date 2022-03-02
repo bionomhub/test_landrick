@@ -72,7 +72,7 @@ export default {
       },
   },
   mounted(){
-    this.simillarFilter(this.product_detales.category)
+    this.simillarFilter(this.product_detales)
   }
 
 };
