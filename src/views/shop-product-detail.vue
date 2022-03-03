@@ -70,9 +70,12 @@ export default {
           await this.GET_PRODUCTS_FROM_FB()
         } 
       },
+      checkSimilar(){
+        this.simillarFilter(this.product_detales)
+      }
   },
   mounted(){
-    this.simillarFilter(this.product_detales)
+    // this.simillarFilter(this.product_detales)
   }
 
 };
@@ -80,6 +83,7 @@ export default {
 
 <template>
   <div>
+    {{checkSimilar}}
     <Navbar :isIcons="true" />
     <section class="bg-half bg-light d-table w-100">
       <div class="container">
